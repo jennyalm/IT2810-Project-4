@@ -19,24 +19,44 @@ const moviesList = {
 
 const FetchMovies = (props) => {
 
-    const [movies, setMovies] = useState({})
+    //const [movies, setMovies] = useState([])
+    const [loading, setLoading] = useState(true)
     
     
-    /* useEffect(() => {
-        fetch('https://facebook.github.io/react-native/movies.json')
-            .then((response) => response.json())
-            .then((responseJson) => {
-                setMovies(responseJson.movies)
-            })
-            
-    }) */
+    
+    
+    
+    const handleLoadContent = (jsonResponse) => {
+        movies = jsonResponse
+        console.log(movies)
+    } 
+    
+    let movies = []
 
-    const displayMovies = (moviesList.movies).map((movie, index) => (
-                    <Movie key={index} title={movie.title} year={movie.releaseYear} poster={movie.poster}/>
-                ))
+    useEffect(() => {
+        fetch('http://it2810-13.idi.ntnu.no:4000/movies?title=&order=-1&sort=Year&page=1')
+            .then((response) => response.json())
+            .then((responseJson) => movies.push(responseJson))
+            //.then((responseJson) => setMovies(responseJson))
+            //.then(() => setLoading(false))
+            .then(() => console.log(movies))
+    },[])
+
+    const fetchUrl = (url) => {
+        fetch(url)
+            .then(res => res.json())
+            .then(jsonRes => movies = jsonRes)
+    }
+
+    const displayMovies = (movies).map((movie, index) => (
+                     <Movie key={index} title={movie.Title} year={movie.Year} poster={movie.Poster}/>
+                 ))
 
     return(
-        <View style={{marginTop: 20}}>{displayMovies}</View>
+        <View>
+            {console.log(movies)}
+            {movies.length ? <View style={{marginTop: 20}}>{displayMovies}</View> : null}
+        </View>
     )
 }
 
