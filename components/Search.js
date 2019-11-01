@@ -3,21 +3,22 @@ import { StyleSheet, Button, Text, View, TextInput } from 'react-native';
 
 const Search = (props) => {
 
-    const [searchText, setSearchText] = useState("")
-
     const [toggleOptions, setToggleOptions] = useState(false)
-
-    const [order, setOrder] = useState("1")
+    
+    const [searchText, setSearchText] = useState("")
+    const [order, setOrder] = useState("-1")
     const [sort, setSort] = useState("Year")
     const [filter, setFilter] = useState("")
 
     const handleOptionChange = (o, s) => {
         setOrder(o)
         setSort(s)
+        props.handleOptionChanges(searchText, o, s, filter)
     }
 
     const handleFilterChange = (f) => {
         setFilter(f)
+        props.handleOptionChanges(searchText, order, sort, f)
     }
 
 
@@ -52,8 +53,14 @@ const Search = (props) => {
                         <Button title="Thriller" onPress={() => handleFilterChange("thriller")} />
                     </View>
                 </View>
-                : null  
-            }            
+                : 
+                <View>
+                    <Text style={{color: 'white'}} >Searched for: {searchText}</Text>
+                    <Text style={{color: 'white'}} >Order: {order}</Text>
+                    <Text style={{color: 'white'}} >Sort: {sort}</Text>
+                    <Text style={{color: 'white'}} >Filter: {filter}</Text>
+                </View>  
+            }          
         </View>
         
     );
@@ -70,7 +77,7 @@ const styles = StyleSheet.create({
         borderRadius: 5,
     },
     optionContainer: {
-        flex: 1,
+        flex: 3,
         flexDirection: 'row',
         alignContent: 'center'
         
