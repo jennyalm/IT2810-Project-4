@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { StyleSheet, Button, Text, View, TextInput } from 'react-native';
 
+
 const Search = (props) => {
 
     const [searchText, setSearchText] = useState("")
@@ -29,12 +30,13 @@ const Search = (props) => {
                 value={searchText} 
                 onChangeText={text => setSearchText(text)} 
             />
-            <Button 
+            <Button
+                style={styles.tekst}
                 title="Search" 
                 onPress={() => props.handleOptionChanges(searchText, order, sort, filter)} 
             />
 
-            { toggleOptions ? <Button title="Hide Option" onPress={() => setToggleOptions(false)} /> : <Button title="Show Options" onPress={() => setToggleOptions(true)}/>}
+            { toggleOptions ? <Button title="Hide Option" onPress={() => setToggleOptions(false)} /> : <Button style={styles.tekst} title="Show Options" onPress={() => setToggleOptions(true)}/>}
             { toggleOptions ? 
                 <View style={styles.optionContainer}>
                     <View style={styles.sortContainer}>
@@ -45,7 +47,7 @@ const Search = (props) => {
                     </View>
                     <Text>{"\n"}</Text>
                     <View style={styles.filterContainer}>
-                        <Button title="Action" onPress={() => handleFilterChange("action")} />
+                        <Button style={styles.tekst}title="Action" onPress={() => handleFilterChange("action")} />
                         <Button title="Comedy" onPress={() => handleFilterChange("comedy")} />
                         <Button title="Drama" onPress={() => handleFilterChange("drama")} />
                         <Button title="Fantasy" onPress={() => handleFilterChange("fantasy")} />
@@ -68,6 +70,9 @@ const styles = StyleSheet.create({
         marginTop: 10,
         backgroundColor: 'white',
         borderRadius: 5,
+    },
+    tekst:{
+        color: 'white'
     },
     optionContainer: {
         flex: 1,

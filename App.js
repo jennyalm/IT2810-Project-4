@@ -55,8 +55,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    alignItems: 'stretch',
-    backgroundColor: '#2b3b41',
+    //alignItems: 'stretch',
+    backgroundColor: '#000000',
     alignItems: 'center',
   },
   scrollView: {
