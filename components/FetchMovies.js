@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { StyleSheet, Button, Text, View, TextInput } from 'react-native';
-import Modal, {closeStyle} from 'simple-react-modal'
+import {Modal} from 'react-native'
 
 import Movie from './Movie'
 import Image from "react-native-web/dist/exports/Image";
@@ -10,6 +10,7 @@ function FetchMovies(props) {
 
 
 const [show, setShow] = useState(false);
+const [isModalVisible, setIsModalVisible] = useState(false)
 
 
 // states to the modal/popup
@@ -21,15 +22,25 @@ const [average, setAverage] = useState("");
    // const [imdbID, setImdbID] = useState("");
 
 
-const CallPopup = (t, p, g, po, a, i) => {
-    setShow(!show);
-    setTitle(t);
-    setPlot(p);
-    setGenre(g);
-    setPoster(po);
-    setAverage(a);
-    //setImdbID(i);
-}
+    const toggleModal = (t,p,g,po,a) => {
+        setIsModalVisible(true);
+     setTitle(t);
+     setPlot(p);
+     setGenre(g);
+     setPoster(po);
+     setAverage(a);
+    }
+
+
+// const CallPopup = (t, p, g, po, a, i) => {
+//     setShow(!show);
+//     setTitle(t);
+//     setPlot(p);
+//     setGenre(g);
+//     setPoster(po);
+//     setAverage(a);
+//     //setImdbID(i);
+// }
 
 const myStyle = {
     backgroundColor: "rgba(0, 0, 0, 0.2)",
@@ -80,8 +91,9 @@ const moviesList = {
 
     const DisplayMovies = (moviesList.movies).map((movie, index) => (
                     <Movie
-                        onPress={(average) => CallPopup(movie.Title, movie.Plot, movie.Genre, movie.Poster, average)}
+                        onPress={(average) => toggleModal(movie.title, movie.poster, average)}
                         key={index}
+                        movie={movie}
                         title={movie.title}
                         year={movie.releaseYear}
                         poster={movie.poster}
@@ -95,27 +107,27 @@ const moviesList = {
         <View className="contrainer">
 
             <Modal
-                show={show}
-                style={myStyle}
-                containerStyle={containerStyle}
+                visible={isModalVisible}
+               // style={myStyle}
+               // containerStyle={containerStyle}
             >
 
-                <View className="popup">
-                    <Text id={"popTitle"}>{title}</Text>
+                <View >
+                    <Text >{title}</Text>
                     <Text>Plot: {plot}</Text>
                     <Text>Genre: {genre}</Text>
                     <Text>Average rating: {average}</Text>
                     <Image
-                        alt={`The movie titled: ${title}`}
-                        src={poster}
-                        className="Poster"
+                        //alt={`The movie titled: ${title}`}
+                        source={{uri: poster}}
+                       // className="Poster"
                     />
-                    <Button className="button" color="danger" onPress={() => setShow(false)}>Close</Button>
+                    <Button onPress={() => setIsModalVisible(false)}>Close</Button>
                 </View>
 
-
             </Modal>
-            {props.movies.length ? null : <p className="noResult">Found no results</p>}
+
+            {props.movies.length ? null : <Text style={styles.noResult}>Found no results</Text>}
             <View className={"movies"}>
                 {props.movies.length ? DisplayMovies : null}
             </View>
@@ -131,6 +143,14 @@ const moviesList = {
 //}
 
 }
+
+const styles = StyleSheet.create({
+    noResult: {
+        color: "red",
+        alignItems: 'center',
+    },
+
+});
 
 export default FetchMovies
 

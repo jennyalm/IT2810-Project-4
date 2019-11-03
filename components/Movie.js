@@ -45,9 +45,14 @@ const Movie = (props) => {
             <Image style={styles.posterStyle}
                 style={{width: 262.5, height: 450}}
                 source={{uri: props.poster}}
+                   //onPress={() => props.onPress(AverageRating(props.rating))}
             />
+
             <View style={styles.text}>
-                <Text style={{color: 'white', fontSize: 30}}>{props.title} ({props.year})</Text>
+                <Text
+                    style={{color: 'white', fontSize: 30}}
+                    onPress={() => props.onPress(3)}
+                >{props.title} ({props.year})</Text>
             </View>
 
         </View>
