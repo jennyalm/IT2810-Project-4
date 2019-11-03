@@ -11,7 +11,7 @@ const  App = () => {
   const [url, setUrl] = useState("http://it2810-13.idi.ntnu.no:4000/movies?title=&order=-1&sort=Year&page=1")
   
   const handleOptionChanges = (search, orderBy, sortBy, filterBy) => {
-    setUrl("http://it2810-13.idi.ntnu.no:4000/movies?title="+search+"&order="+orderBy+"&sort="+sortBy+"&page="+page+"&genre="+filterBy)
+    setUrl("http://it2810-13.idi.ntnu.no:4000/movies?title="+search+"&order="+orderBy+"&sort="+sortBy+"&page=1&genre="+filterBy)
 
   }
 
@@ -25,9 +25,8 @@ const  App = () => {
     <View style={styles.container}>
       <Header />
       <ScrollView style={styles.scrollView}>
-
+      <Search handleOptionChanges={handleOptionChanges}/>
         <View style={styles.innerView}>
-          <Search handleOptionChanges={handleOptionChanges}/>
           <FetchMovies url={url}/>
           <Page setPage={handlePageChange}/>
         </View>
@@ -51,7 +50,8 @@ const styles = StyleSheet.create({
     marginHorizontal: 0,
   },
   innerView: {
-    alignItems: 'center'
+    alignItems: 'center',
+    paddingTop: 20,
   },
 });
 

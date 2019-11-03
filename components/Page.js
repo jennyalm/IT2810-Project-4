@@ -1,5 +1,8 @@
-import React, {useState, useEffect} from 'react';
-import { StyleSheet, Button, Text, View, TextInput } from 'react-native';
+import React, {useState} from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { Button } from 'react-native-elements';
+
 
 const Page = (props) => {
 
@@ -17,9 +20,15 @@ const Page = (props) => {
     }
 
     return(
-        <View style={styles.buttonContainer}>
-            <Button title="prev" onPress={() => handleChangePage(-1)} />
-            <Button title="next" onPress={() => handleChangePage(1)} />
+        <View>
+            {/* <Icon raised name="arrow-left" size={30} color="white" onPress={() => handleChangePage(-1)} />
+            <Text style={{color: 'white'}}>{page}</Text>
+            <Icon raised name="arrow-right" size={30} color="white" onPress={() => handleChangePage(-1)} /> */}
+            <View><Text style={{color: 'white', textAlign: 'center'}}>Current page: {page}</Text></View>
+            <View style={styles.buttonContainer}>
+                <Button type="clear" title=" prev" onPress={() => handleChangePage(-1)} icon={<Icon name="arrow-left" size={20} color="#348FD5" />}/>
+                <Button type="clear" title="next " onPress={() => handleChangePage(1)} icon={<Icon name="arrow-right" size={20} color="#348FD5" />} iconRight/>
+            </View>
         </View>
     )
 }

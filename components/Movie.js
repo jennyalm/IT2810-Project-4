@@ -4,8 +4,8 @@ import { StyleSheet, Button, Text, View, TextInput, Image } from 'react-native';
 const Movie = (props) => {
     return(
         <View style={styles.movieStyle} >
-            <Text style={{color: 'white'}}>Title: {props.title}</Text>
-            <Text style={{color: 'white'}}>Year: {props.year}</Text>
+            <Text style={styles.title}>{props.title}</Text>
+            <Text style={styles.year}>({props.year})</Text>
             <Image 
                 style={{width: 350, height: 600}}
                 source={{uri: props.poster}}
@@ -18,6 +18,18 @@ const styles = StyleSheet.create({
     movieStyle: {
       paddingBottom: 40,
       alignItems: 'center',
+    },
+    title: {
+      letterSpacing: 2,
+      color: 'white',
+      fontSize: 20,
+      textAlign: 'center'
+      
+    },
+    year: {
+      color: 'white',
+      fontSize: 15,
+      textAlign: 'center'
     },
   });
 

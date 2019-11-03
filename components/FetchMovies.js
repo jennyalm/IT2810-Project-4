@@ -13,6 +13,7 @@ const FetchMovies = (props) => {
     useEffect(() => {
         if(debouncedSearchTerm){
             setLoading(true)
+            console.log(props.url)
             fetch(props.url)
                 .then((response) => response.json())
                 .then((responseJson) => {
@@ -26,8 +27,8 @@ const FetchMovies = (props) => {
 
     return(
         <View>
-            {loading ? <Text>Loading...</Text> : null}
-            {movies.map(movie => (
+            {loading ? <View style={{alignItems: 'center'}}><Text style={{color: 'white'}}>Loading...</Text></View> : 
+            movies.map(movie => (
                 <Movie 
                     key={movie.imdbID} 
                     title={movie.Title} 

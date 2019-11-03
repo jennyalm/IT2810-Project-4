@@ -1,19 +1,44 @@
 import React, {useState} from 'react';
-import { StyleSheet, Button, Text, View, TextInput } from 'react-native';
-
+import { StyleSheet, Text, View, TextInput, Picker } from 'react-native';
+import { SearchBar, Button } from 'react-native-elements';
+import Icon from 'react-native-vector-icons/FontAwesome';
 const Search = (props) => {
 
     const [toggleOptions, setToggleOptions] = useState(false)
     
+    const [selectedSort, setSelectedSort] = useState("yearAsc")
+
     const [searchText, setSearchText] = useState("")
     const [order, setOrder] = useState("-1")
     const [sort, setSort] = useState("Year")
     const [filter, setFilter] = useState("")
 
-    const handleOptionChange = (o, s) => {
-        setOrder(o)
-        setSort(s)
-        props.handleOptionChanges(searchText, o, s, filter)
+    const handleOptionChange = (x) => {
+        if(x === "titleAsc"){
+            props.handleOptionChanges(searchText, "1", "Title", filter)
+            setOrder("1"); 
+            setSort("title"); 
+        }
+        else if(x === "titleDesc"){
+            props.handleOptionChanges(searchText, "-1", "Title", filter)
+            setOrder("-1"); 
+            setSort("title"); 
+        }
+        else if(x === "yearAsc"){
+            props.handleOptionChanges(searchText, "-1", "Year", filter)
+            setOrder("-1"); 
+            setSort("year"); 
+        }
+        else if(x === "yearDesc"){
+            props.handleOptionChanges(searchText, "1", "Year", filter)
+            setOrder("1"); 
+            setSort("year"); 
+        }
+        else{
+            console.log("Something wrong with the chosen option")
+        }
+        setSelectedSort(x)        
+        
     }
 
     const handleFilterChange = (f) => {
@@ -23,43 +48,67 @@ const Search = (props) => {
 
 
     return (
-        <View>
-            <TextInput 
-                placeholder=" Search (e.g the hobbit)"
+        <View style={{width: 350}}>
+            <SearchBar 
+                containerStyle={{backgroundColor: '#2b3b41', borderBottomColor: 'transparent', borderTopColor: 'transparent', paddingHorizontal: 0}}
+                inputStyle={{color: 'white'}}
+                placeholder="Type here..."
+                onChangeText={text => setSearchText(text)}
+                value={searchText}
+            />
+            {/* <TextInput 
+                placeholder=" Search (e.g the hobbit)" 
                 style={styles.inputField}
                 value={searchText} 
                 onChangeText={text => setSearchText(text)} 
-            />
-            <Button 
+            /> */}
+            
+            <Button
+                containerStyle={{marginBottom: 10}}
+                buttonStyle={{backgroundColor: 'green'}}
                 title="Search" 
                 onPress={() => props.handleOptionChanges(searchText, order, sort, filter)} 
             />
 
-            { toggleOptions ? <Button title="Hide Option" onPress={() => setToggleOptions(false)} /> : <Button title="Show Options" onPress={() => setToggleOptions(true)}/>}
+
+
+            { toggleOptions 
+                ? <Button title="Hide Option   " onPress={() => setToggleOptions(false)} type="outline" icon={<Icon name="arrow-up" size={20} color="#348FD5" />} iconRight/> 
+                : <Button title="Show Options   " onPress={() => setToggleOptions(true)} type="outline" icon={<Icon name="arrow-down" size={20} color="#348FD5" />} iconRight/>}
             { toggleOptions ? 
                 <View style={styles.optionContainer}>
                     <View style={styles.sortContainer}>
-                        <Button title="Title A-Z" onPress={() => handleOptionChange("1", "Title")} />
-                        <Button title="Title Z-A" onPress={() => handleOptionChange("-1", "Title")} />
-                        <Button title="New - Old" onPress={() => handleOptionChange("-1", "Year")} />
-                        <Button title="Old - New" onPress={() => handleOptionChange("1", "Year")} />
+                        <View style={{alignItems: 'center'}}><Text style={{color: 'white'}}>Sort</Text></View>
+                        
+                        <Picker
+                            selectedValue={selectedSort}
+                            onValueChange={(itemValue, itemIndex) => handleOptionChange(itemValue)}
+                            itemStyle={{color: "white"}}
+                            >
+                            <Picker.Item label="Title A-Z" value="titleAsc" />
+                            <Picker.Item label="Title Z-A" value="titleDesc" />
+                            <Picker.Item label="Year New-Old" value="yearAsc" />
+                            <Picker.Item label="Year Old-New" value="yearDesc" />
+                        </Picker>
                     </View>
-                    <Text>{"\n"}</Text>
                     <View style={styles.filterContainer}>
-                        <Button title="Action" onPress={() => handleFilterChange("action")} />
-                        <Button title="Comedy" onPress={() => handleFilterChange("comedy")} />
-                        <Button title="Drama" onPress={() => handleFilterChange("drama")} />
-                        <Button title="Fantasy" onPress={() => handleFilterChange("fantasy")} />
-                        <Button title="Thriller" onPress={() => handleFilterChange("thriller")} />
+                        <View style={{alignItems: 'center'}}><Text style={{color: 'white'}}>Filter</Text></View>                        
+                        <Picker
+                            selectedValue={filter}
+                            onValueChange={(itemValue, itemIndex) => handleFilterChange(itemValue)}
+                            itemStyle={{color: "white"}}
+                            >
+                            <Picker.Item label="No filter" value="" />
+                            <Picker.Item label="Action" value="action" />
+                            <Picker.Item label="Comedy" value="comedy" />
+                            <Picker.Item label="Drama" value="drama" />
+                            <Picker.Item label="Fantasy" value="fantasy" />
+                            <Picker.Item label="Thriller" value="thriller" />
+                        </Picker>
                     </View>
                 </View>
                 : 
-                <View>
-                    <Text style={{color: 'white'}} >Searched for: {searchText}</Text>
-                    <Text style={{color: 'white'}} >Order: {order}</Text>
-                    <Text style={{color: 'white'}} >Sort: {sort}</Text>
-                    <Text style={{color: 'white'}} >Filter: {filter}</Text>
-                </View>  
+                null
             }          
         </View>
         
@@ -79,14 +128,19 @@ const styles = StyleSheet.create({
     optionContainer: {
         flex: 3,
         flexDirection: 'row',
-        alignContent: 'center'
+        alignContent: 'center',
+        backgroundColor: "#1c272b",
+        paddingTop: 15,
+        borderRadius: 5,
         
     },
     sortContainer: {
-        width: 175
+        width: 175,
+        
     },
     filterContainer: {
-        width: 175
+        width: 175,
+        
     },
   });
 
