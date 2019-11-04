@@ -84,6 +84,8 @@ const FetchMovies = (props) => {
                     poster={movie.Poster}
                     genre={movie.Genre}
                     plot={movie.Plot}
+                    imdbID={movie.imdbID}
+                    allRatings={movie.Rating}
                 />
             ))}
             
