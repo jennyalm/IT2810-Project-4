@@ -18,9 +18,9 @@ const  App = () => {
   }
 
   const handlePageChange = (p) => {
-      setUrl(url.replace("page="+page,"page="+p)); 
-      setPage(p)
-    }
+    setUrl(url.replace("page="+page,"page="+p));
+    setPage(p)
+  }
 
   return (
     
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    alignItems: 'stretch',
+    //alignItems: 'stretch',
     backgroundColor: 'black',
     alignItems: 'center',
   },

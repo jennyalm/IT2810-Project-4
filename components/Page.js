@@ -38,8 +38,8 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         marginBottom: 40
-        
+
     }
-  });
+});
 
 export default Page

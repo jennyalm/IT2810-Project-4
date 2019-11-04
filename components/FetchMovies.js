@@ -40,7 +40,7 @@ const FetchMovies = (props) => {
     const [genre, setGenre] = useState("");
     const [poster, setPoster] = useState("");
     const [average, setAverage] = useState("");
-   // const [imdbID, setImdbID] = useState("");
+    // const [imdbID, setImdbID] = useState("");
 
 
     const toggleModal = (t,p,g,po,a) => {
@@ -98,21 +98,21 @@ export default FetchMovies
 function useDebounce(value, delay) {
     // State and setters for debounced value
     const [debouncedValue, setDebouncedValue] = useState(value);
-  
+
     useEffect(
-      () => {
-        const handler = setTimeout(() => {
-          setDebouncedValue(value);
-        }, delay);
-  
-        return () => {
-          clearTimeout(handler);
-        };
-      },
-      [value] 
+        () => {
+            const handler = setTimeout(() => {
+                setDebouncedValue(value);
+            }, delay);
+
+            return () => {
+                clearTimeout(handler);
+            };
+        },
+        [value]
     );
     return debouncedValue;
-  }
+}
 
 
 
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent'
     },
     containerStyle: {
-        backgroundColor: 'black', 
+        backgroundColor: 'black',
         alignItems: 'center',
         flex: 1,
         padding: 50,
