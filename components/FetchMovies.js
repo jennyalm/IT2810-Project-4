@@ -1,59 +1,127 @@
 import React, {useState, useEffect} from 'react';
-import { StyleSheet, Button, Text, View, TextInput } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
+import { Button, Overlay } from 'react-native-elements'
 
 import Movie from './Movie'
 
-const moviesList = {
-        title: "The Basics - Networking",
-        description: "Your app fetched this from a remote endpoint!",
-        movies: [
-                    { "id": "1", "title": "Star Wars", "releaseYear": "1977", "poster": "https://m.media-amazon.com/images/M/MV5BNzVlY2MwMjktM2E4OS00Y2Y3LWE3ZjctYzhkZGM3YzA1ZWM2XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg" },
-                    { "id": "2", "title": "Back to the Future", "releaseYear": "1985", "poster": "https://m.media-amazon.com/images/M/MV5BZmU0M2Y1OGUtZjIxNi00ZjBkLTg1MjgtOWIyNThiZWIwYjRiXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg"},
-                    { "id": "3", "title": "The Matrix", "releaseYear": "1999", "poster": "https://m.media-amazon.com/images/M/MV5BNzQzOTk3OTAtNDQ0Zi00ZTVkLWI0MTEtMDllZjNkYzNjNTc4L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg" },
-                    { "id": "4", "title": "Inception", "releaseYear": "2010", "poster": "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg" },
-                    { "id": "5", "title": "Interstellar", "releaseYear": "2014", "poster": "https://m.media-amazon.com/images/M/MV5BZjdkOTU3MDktN2IxOS00OGEyLWFmMjktY2FiMmZkNWIyODZiXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg" }
-                ]
-        }
-
-
-
 const FetchMovies = (props) => {
 
-    const [movies, setMovies] = useState({})
-    
-    
-    /* useEffect(() => {
-        fetch('https://facebook.github.io/react-native/movies.json')
-            .then((response) => response.json())
-            .then((responseJson) => {
-                setMovies(responseJson.movies)
-            })
-            
-    }) */
+    const [movies, setMovies] = useState([])
+    const [loading, setLoading] = useState(true)
 
-    const displayMovies = (moviesList.movies).map((movie, index) => (
-                    <Movie key={index} title={movie.title} year={movie.releaseYear} poster={movie.poster}/>
-                ))
+    const [show, setShow] = useState(false);
+    const [isModalVisible, setIsModalVisible] = useState(false)
+
+
+    const debouncedSearchTerm = useDebounce(props.url, 500);
+
+    useEffect(() => {
+        if(debouncedSearchTerm){
+            setLoading(true)
+            console.log(props.url)
+            fetch(props.url)
+                .then((response) => response.json())
+                .then((responseJson) => {
+                    setLoading(false);
+                    setMovies(responseJson.docs); 
+                })
+        } else {
+            setMovies([])
+        }
+    },[debouncedSearchTerm]);
+
+    // states to the modal/popup
+    const [title, setTitle] = useState("");
+    const [plot, setPlot] = useState("");
+    const [genre, setGenre] = useState("");
+    const [poster, setPoster] = useState("");
+    const [average, setAverage] = useState("");
+   // const [imdbID, setImdbID] = useState("");
+
+
+    const toggleModal = (t,p,g,po,a) => {
+        setIsModalVisible(true);
+        setTitle(t);
+        setPlot(p);
+        setGenre(g);
+        setPoster(po);
+        setAverage(a);
+    }
+
 
     return(
-        <View style={{marginTop: 20}}>{displayMovies}</View>
+        <View>
+            <Overlay
+                overlayBackgroundColor="#2E2E2E"
+                isVisible={isModalVisible}
+                onBackdropPress={() => setIsModalVisible(false)}
+            >
+                <View style={{alignItems: 'stretch'}}>
+                    <Text style={{color: 'white',  fontSize: 20, textAlign: 'center'}}>Title: {title}</Text>
+                    <Text>{"\n"}</Text>
+                    <Text style={{color: 'white', textAlign: 'center'}}>Genre: {genre}</Text>
+                    <Text style={{color: 'white', textAlign: 'center'}}>Average rating: {average}</Text>
+                    <Text style={{color: 'white', textAlign: 'center'}}>Plot: {plot}</Text>
+                    <Image style={{width: 175, height: 350, alignSelf: 'center'}} source={{uri: poster}}/>
+                    <Button title="Hide modal" onPress={() => setIsModalVisible(false)} buttonStyle={{backgroundColor: 'red'}} />
+                </View>
+            </Overlay>
+            
+
+            {loading ? <View style={{alignItems: 'center'}}><Text style={{color: 'white'}}>Loading...</Text></View> : 
+            movies.map(movie => (
+                <Movie 
+                    onPress={toggleModal}
+                    key={movie.imdbID} 
+                    title={movie.Title} 
+                    year={movie.Year} 
+                    poster={movie.Poster}
+                    genre={movie.Genre}
+                    plot={movie.Plot}
+                />
+            ))}
+        </View>
     )
 }
-
+// https://dev.to/gabe_ragland/debouncing-with-react-hooks-jci  NÅR JEG SKAL KOMMENTERE KODEN BRUK DENNE!!!!
 export default FetchMovies
 
-/* 
+function useDebounce(value, delay) {
+    // State and setters for debounced value
+    const [debouncedValue, setDebouncedValue] = useState(value);
+  
+    useEffect(
+      () => {
+        const handler = setTimeout(() => {
+          setDebouncedValue(value);
+        }, delay);
+  
+        return () => {
+          clearTimeout(handler);
+        };
+      },
+      [value] 
+    );
+    return debouncedValue;
+  }
 
-.map((movie, index) => (
-                <div key={movie._id} >
-                    <Movie 
-                        onClick={(average) => callPopup(movie.Title, movie.Plot, movie.Genre, movie.Poster, average)} 
-                        key={movie._id} 
-                        movie={movie}
-                        imdbID = {movie.imdbID} 
-                        />
-                </div>
-            )
-        )
 
-*/
+
+const styles = StyleSheet.create({
+    modalStyle: {
+        height: 50,
+        width: 50,
+        margin: 0,
+        backgroundColor: 'transparent'
+    },
+    containerStyle: {
+        backgroundColor: 'black', 
+        alignItems: 'center',
+        flex: 1,
+        padding: 50,
+        borderRadius: 8,
+        height: 50,
+        
+
+    },
+  });

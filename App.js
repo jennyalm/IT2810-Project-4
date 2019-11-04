@@ -7,44 +7,31 @@ import Page from './components/Page'
 
 const  App = () => {
 
-  const [searchText, setSearchText] = useState(null)
-  const [order, setOrder] = useState("1")
-  const [sort, setSort] = useState("Year")
-  const [filter, setFilter] = useState("")
+  const [page, setPage] = useState(1)
+  const [url, setUrl] = useState("http://it2810-13.idi.ntnu.no:4000/movies?title=&order=-1&sort=Year&page=1")
+  
+  const handleOptionChanges = (search, orderBy, sortBy, filterBy) => {
+    setUrl("http://it2810-13.idi.ntnu.no:4000/movies?title="+search+"&order="+orderBy+"&sort="+sortBy+"&page=1&genre="+filterBy)
 
-  const handleOptionChanges = (search, order, sort, filter) => {
-    setSearchText(search)
-    setOrder(order)
-    setSort(sort)
-    setFilter(filter)
   }
 
-  const [url, setUrl] = useState("http://it2810-13.idi.ntnu.no:4000/movies?title=&order=-1&sort=Year&page=1")
-
+  const handlePageChange = (p) => {
+      setUrl(url.replace("page="+page,"page="+p)); 
+      setPage(p)
+    }
 
   return (
     
     <View style={styles.container}>
       <Header />
       <ScrollView style={styles.scrollView}>
+      <Search handleOptionChanges={handleOptionChanges}/>
         <View style={styles.innerView}>
-          <Search 
-            handleOptionChanges={handleOptionChanges}
-            />
-            
-          {searchText ? 
-            <View>
-              <Text style={{color: 'white'}} >Searched for: {searchText}</Text>
-              <Text style={{color: 'white'}} >Order: {order}</Text>
-              <Text style={{color: 'white'}} >Sort: {sort}</Text>
-              <Text style={{color: 'white'}} >Filter: {filter}</Text>
-            </View>
-            : null}
+          <FetchMovies url={url}/>
+          <Page setPage={handlePageChange}/>
+        </View>
 
-            <FetchMovies movies={url}/>
-            <Page />
-          </View>
-        </ScrollView>
+      </ScrollView>
     </View>
     
   );
@@ -56,14 +43,15 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     alignItems: 'stretch',
-    backgroundColor: '#2b3b41',
+    backgroundColor: 'black',
     alignItems: 'center',
   },
   scrollView: {
-    marginHorizontal: 10,
+    marginHorizontal: 0,
   },
   innerView: {
-    alignItems: 'center'
+    alignItems: 'center',
+    paddingTop: 20,
   },
 });
 
