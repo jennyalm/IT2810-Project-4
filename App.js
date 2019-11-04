@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     alignItems: 'stretch',
-    backgroundColor: '#2b3b41',
+    backgroundColor: 'black',
     alignItems: 'center',
   },
   scrollView: {

@@ -50,7 +50,7 @@ const Search = (props) => {
     return (
         <View style={{width: 350}}>
             <SearchBar 
-                containerStyle={{backgroundColor: '#2b3b41', borderBottomColor: 'transparent', borderTopColor: 'transparent', paddingHorizontal: 0}}
+                containerStyle={{backgroundColor: 'black', borderBottomColor: 'transparent', borderTopColor: 'transparent', paddingHorizontal: 0}}
                 inputStyle={{color: 'white'}}
                 placeholder="Type here..."
                 onChangeText={text => setSearchText(text)}
@@ -65,7 +65,7 @@ const Search = (props) => {
             
             <Button
                 containerStyle={{marginBottom: 10}}
-                buttonStyle={{backgroundColor: 'green'}}
+                buttonStyle={{backgroundColor: 'red'}}
                 title="Search" 
                 onPress={() => props.handleOptionChanges(searchText, order, sort, filter)} 
             />

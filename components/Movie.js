@@ -4,12 +4,13 @@ import { StyleSheet, Button, Text, View, TextInput, Image } from 'react-native';
 const Movie = (props) => {
     return(
         <View style={styles.movieStyle} >
-            <Text style={styles.title}>{props.title}</Text>
-            <Text style={styles.year}>({props.year})</Text>
+            
             <Image 
-                style={{width: 350, height: 600}}
+                style={{width: 262.5, height: 450}}
                 source={{uri: props.poster}}
                 />
+            <Text onPress={() => props.onPress(props.title, props.plot, props.genre, props.poster, 3)} style={styles.title}>{props.title}</Text>
+            <Text style={styles.year}>({props.year})</Text>
         </View>
     )
 }
