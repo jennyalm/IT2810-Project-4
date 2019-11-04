@@ -75,8 +75,8 @@ const Search = (props) => {
 
 
             { toggleOptions
-                ? <Button title="Hide Option   " onPress={() => setToggleOptions(false)} type="outline" icon={<Icon name="arrow-up" size={20} color="#348FD5" />} iconRight/>
-                : <Button title="Show Options   " onPress={() => setToggleOptions(true)} type="outline" icon={<Icon name="arrow-down" size={20} color="#348FD5" />} iconRight/>}
+                ? <Button title="Hide Option   " onPress={() => setToggleOptions(false)} type="outline" titleStyle={{color: 'grey'}} buttonStyle={{borderColor: 'red'}} icon={<Icon name="arrow-up" size={20} color="grey" />} iconRight/>
+                : <Button title="Show Options   " onPress={() => setToggleOptions(true)} type="outline" titleStyle={{color: 'grey'}} buttonStyle={{borderColor: 'red'}} icon={<Icon name="arrow-down" size={20} color="grey" />} iconRight/>}
             { toggleOptions ?
                 <View style={styles.optionContainer}>
                     <View style={styles.sortContainer}>

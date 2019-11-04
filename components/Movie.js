@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import { StyleSheet, Button, Text, View, TextInput, Image } from 'react-native';
+import { StyleSheet, Button, Text, View, TextInput, Image, TouchableHighlight} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import StarRating from 'react-native-star-rating'
 import {AsyncStorage} from 'react-native';
 import axios from 'axios';
+
 
 
 
@@ -72,14 +73,17 @@ const Movie = (props) => {
     return(
         <View style={styles.wrap}>
             <View style={styles.movieStyle} >
-
+                <TouchableHighlight
+                    onPress={() => props.onPress(props.title, props.plot, props.genre, props.poster, averageRating(props.allRatings))}
+                >
                 <Image
                     style={styles.posterStyle}
                     source={{uri: props.poster}}
                     //onPress={() => props.onPress(AverageRating(props.rating))}
                     />
+                </TouchableHighlight>
                 <View style={styles.text}>
-                    <Text onPress={() => props.onPress(props.title, props.plot, props.genre, props.poster, averageRating(props.allRatings))} style={styles.title}>{props.title}</Text>
+                    <Text style={styles.title}>{props.title}</Text>
                     <Text style={styles.year}>({props.year})</Text>
 
                 </View>
