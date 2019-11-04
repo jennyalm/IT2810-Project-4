@@ -52,9 +52,11 @@ const Search = (props) => {
             <SearchBar 
                 containerStyle={{backgroundColor: 'black', borderBottomColor: 'transparent', borderTopColor: 'transparent', paddingHorizontal: 0}}
                 inputStyle={{color: 'white'}}
-                placeholder="Type here..."
+                placeholder="Search (e.g the hobbit)"
                 onChangeText={text => setSearchText(text)}
                 value={searchText}
+                onSubmitEditing={() => props.handleOptionChanges(searchText, order, sort, filter)}
+                returnKeyType='search'
             />
             {/* <TextInput 
                 placeholder=" Search (e.g the hobbit)" 
@@ -63,12 +65,12 @@ const Search = (props) => {
                 onChangeText={text => setSearchText(text)} 
             /> */}
             
-            <Button
+            {/* <Button
                 containerStyle={{marginBottom: 10}}
                 buttonStyle={{backgroundColor: 'red'}}
                 title="Search" 
                 onPress={() => props.handleOptionChanges(searchText, order, sort, filter)} 
-            />
+            /> */}
 
 
 
@@ -145,3 +147,4 @@ const styles = StyleSheet.create({
   });
 
 export default Search
+
