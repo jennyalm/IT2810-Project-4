@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
 import { Button, Overlay } from 'react-native-elements'
 
 import Movie from './Movie'
@@ -8,7 +8,7 @@ const FetchMovies = (props) => {
 
     const [movies, setMovies] = useState([])
     const [loading, setLoading] = useState(true)
-
+    const [total, setTotal] = useState(1)
     const [show, setShow] = useState(false);
     const [isModalVisible, setIsModalVisible] = useState(false)
 
@@ -23,10 +23,14 @@ const FetchMovies = (props) => {
                 .then((response) => response.json())
                 .then((responseJson) => {
                     setLoading(false);
-                    setMovies(responseJson.docs); 
+                    setMovies(responseJson.docs);
+                    props.setPages(responseJson.pages);
+                    props.setTotal(responseJson.total)
+                    setTotal(responseJson.total)
                 })
         } else {
             setMovies([])
+            
         }
     },[debouncedSearchTerm]);
 
@@ -36,7 +40,7 @@ const FetchMovies = (props) => {
     const [genre, setGenre] = useState("");
     const [poster, setPoster] = useState("");
     const [average, setAverage] = useState("");
-   // const [imdbID, setImdbID] = useState("");
+    // const [imdbID, setImdbID] = useState("");
 
 
     const toggleModal = (t,p,g,po,a) => {
@@ -52,22 +56,24 @@ const FetchMovies = (props) => {
     return(
         <View>
             <Overlay
+                containerStyle={styles.overlay}
                 overlayBackgroundColor="#2E2E2E"
                 isVisible={isModalVisible}
                 onBackdropPress={() => setIsModalVisible(false)}
             >
-                <View style={{alignItems: 'stretch'}}>
-                    <Text style={{color: 'white',  fontSize: 20, textAlign: 'center'}}>Title: {title}</Text>
-                    <Text>{"\n"}</Text>
-                    <Text style={{color: 'white', textAlign: 'center'}}>Genre: {genre}</Text>
-                    <Text style={{color: 'white', textAlign: 'center'}}>Average rating: {average}</Text>
-                    <Text style={{color: 'white', textAlign: 'center'}}>Plot: {plot}</Text>
-                    <Image style={{width: 175, height: 350, alignSelf: 'center'}} source={{uri: poster}}/>
-                    <Button title="Hide modal" onPress={() => setIsModalVisible(false)} buttonStyle={{backgroundColor: 'red'}} />
-                </View>
+                <ScrollView>
+                    <View style={{alignItems: 'stretch', flex: 1}}>
+                        <Text style={{color: 'white',  fontSize: 30, textAlign: 'center', marginBottom: 10, letterSpacing: 2}}>{title}</Text>
+                        <Text style={{color: 'white', textAlign: 'center', marginBottom: 5}}><Text style={{fontWeight: "bold"}}>Genre: </Text>{genre}</Text>
+                        <Text style={{color: 'white', textAlign: 'center', marginBottom: 5}}><Text style={{fontWeight: "bold"}}>Average rating: </Text>{average}</Text>
+                        <Text style={{color: 'white', textAlign: 'center', marginBottom: 25, lineHeight: 20}}><Text style={{fontWeight: "bold"}}>Plot: </Text>{plot}</Text>
+                        <Image style={{width: 175, height: 300, alignSelf: 'center'}} source={{uri: poster}}/>
+                        <Button title="Hide modal" onPress={() => setIsModalVisible(false)} buttonStyle={{backgroundColor: 'red'}} containerStyle={{marginTop: 10, flex: 1, justifyContent: 'flex-end', marginBottom: 10}} />
+                    </View>
+                </ScrollView>
             </Overlay>
             
-
+            {total === 0 ? <Text style={{color: 'red'}}>No search results</Text> : <Text style={{color: 'white', textAlign: 'center', marginBottom: 10}}>Found {total} movies</Text>}
             {loading ? <View style={{alignItems: 'center'}}><Text style={{color: 'white'}}>Loading...</Text></View> : 
             movies.map(movie => (
                 <Movie 
@@ -78,8 +84,11 @@ const FetchMovies = (props) => {
                     poster={movie.Poster}
                     genre={movie.Genre}
                     plot={movie.Plot}
+                    imdbID={movie.imdbID}
+                    allRatings={movie.Rating}
                 />
             ))}
+            
         </View>
     )
 }
@@ -89,21 +98,21 @@ export default FetchMovies
 function useDebounce(value, delay) {
     // State and setters for debounced value
     const [debouncedValue, setDebouncedValue] = useState(value);
-  
+
     useEffect(
-      () => {
-        const handler = setTimeout(() => {
-          setDebouncedValue(value);
-        }, delay);
-  
-        return () => {
-          clearTimeout(handler);
-        };
-      },
-      [value] 
+        () => {
+            const handler = setTimeout(() => {
+                setDebouncedValue(value);
+            }, delay);
+
+            return () => {
+                clearTimeout(handler);
+            };
+        },
+        [value]
     );
     return debouncedValue;
-  }
+}
 
 
 
@@ -115,13 +124,15 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent'
     },
     containerStyle: {
-        backgroundColor: 'black', 
+        backgroundColor: 'black',
         alignItems: 'center',
         flex: 1,
         padding: 50,
         borderRadius: 8,
         height: 50,
-        
-
     },
+    overlay: {
+        flex: 1,
+        height: 'auto'
+    }
   });
