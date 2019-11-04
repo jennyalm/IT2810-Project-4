@@ -56,11 +56,11 @@ const Search = (props) => {
                 onChangeText={text => setSearchText(text)}
                 value={searchText}
             />
-            {/* <TextInput
-                placeholder=" Search (e.g the hobbit)"
+            {/* <TextInput 
+                placeholder=" Search (e.g the hobbit)" 
                 style={styles.inputField}
-                value={searchText}
-                onChangeText={text => setSearchText(text)}
+                value={searchText} 
+                onChangeText={text => setSearchText(text)} 
             /> */}
 
             <Button
@@ -73,8 +73,8 @@ const Search = (props) => {
 
 
             { toggleOptions
-                ? <Button  title="Hide Option" onPress={() => setToggleOptions(false)} type="outline" icon={<Icon name="arrow-up" size={20} color="#348FD5" />} iconRight/>
-                : <Button  buttonStyle={{borderColor: 'red'}} title="Show Options" onPress={() => setToggleOptions(true)} type="outline" icon={<Icon name="arrow-down" size={20} color="red" />} iconRight/>}
+                ? <Button title="Hide Option   " onPress={() => setToggleOptions(false)} type="outline" icon={<Icon name="arrow-up" size={20} color="#348FD5" />} iconRight/>
+                : <Button title="Show Options   " onPress={() => setToggleOptions(true)} type="outline" icon={<Icon name="arrow-down" size={20} color="#348FD5" />} iconRight/>}
             { toggleOptions ?
                 <View style={styles.optionContainer}>
                     <View style={styles.sortContainer}>
@@ -141,10 +141,6 @@ const styles = StyleSheet.create({
     filterContainer: {
         width: 175,
 
-    },
-    show:{
-       color: 'red',
-       borderColor: 'red',
     },
 });
 

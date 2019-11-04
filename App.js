@@ -27,7 +27,7 @@ const  App = () => {
         <ScrollView style={styles.scrollView}>
           <Search handleOptionChanges={handleOptionChanges}/>
           <View style={styles.innerView}>
-            <FetchMovies movies={url}/>
+            <FetchMovies url={url}/>
             <Page setPage={handlePageChange}/>
           </View>
 
@@ -38,21 +38,20 @@ const  App = () => {
 }
 
 
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
     //alignItems: 'stretch',
-    backgroundColor: '#000000',
+    backgroundColor: 'black',
     alignItems: 'center',
   },
   scrollView: {
-    marginHorizontal: 10,
+    marginHorizontal: 0,
   },
   innerView: {
-    marginTop: 30,
-    alignItems: 'center'
+    alignItems: 'center',
+    paddingTop: 20,
   },
 });
 
