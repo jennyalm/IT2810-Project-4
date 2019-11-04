@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { StyleSheet, Button, Text, View, TextInput, Image } from 'react-native';
-//import StarRatingComponent from 'react-star-rating-component';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import StarRating from 'react-native-star-rating'
 import axios from 'axios';
 
@@ -8,6 +8,7 @@ const Movie = (props) => {
 
     const [rating, setRating] = useState(0);
     const [CanGiveRating, setcanGiveRating] = useState(true);
+    const [ButtonColor, setButtonColor] = useState('grey')
 
 
     const OnStarClick = (nextValue, prevValue, name) => {
@@ -35,7 +36,10 @@ const Movie = (props) => {
 
 
 
-   const AverageRating = arr => parseFloat(arr.reduce((p,c) => p + c, 0) / (arr.length)).toFixed(1);
+
+
+
+    const AverageRating = arr => parseFloat(arr.reduce((p,c) => p + c, 0) / (arr.length)).toFixed(1);
 
 
     return(
@@ -57,7 +61,7 @@ const Movie = (props) => {
 
         </View>
 
-            <View>
+            <View style={styles.rating}>
             <StarRating
                // name={props.title} /* name of the radio input, it is required */
                 emptyStar={'star'}
@@ -70,17 +74,33 @@ const Movie = (props) => {
 
             />
 
-            <Text>{'\n'}</Text>
-                <Text>{'\n'}</Text>
-                <Text>{'\n'}</Text>
+                <Icon
+                    size={40}
+                    name="heart"
+                    type='font-awesome'
+                    reverse={ false}
+                    color= {ButtonColor}
+                    iconstyle={styles.heart}
+                    onPress={() => {
+                        if(ButtonColor === "red"){
+                            setButtonColor('grey');
+                        }
+                        else{
+                            setButtonColor('red');
+                        }
+                    }}
+                />
 
             {/*{!CanGiveRating ?*/}
                 {/*<Text>Average rating: {AverageRating(3)}</Text>*/}
                 {/*: null*/}
             {/*}*/}
 
-
             </View>
+
+            <Text>{'\n'}</Text>
+            <Text>{'\n'}</Text>
+            <Text>{'\n'}</Text>
 
         </View>
     )
@@ -97,6 +117,13 @@ const styles = StyleSheet.create({
     posterStyle: {
         alignItems: 'stretch',
 
+    },
+    rating:{
+        flexDirection: 'row',
+        justifyContent: 'space-evenly'
+    },
+    heart:{
+       borderColor: '#f50'
     },
 });
 
