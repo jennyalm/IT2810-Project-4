@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import { StyleSheet, Button, Text, View, TextInput } from 'react-native';
+import { StyleSheet, Button, Text, View, TextInput, Image } from 'react-native';
 import {Modal} from 'react-native'
 
 import Movie from './Movie'
-import Image from "react-native-web/dist/exports/Image";
+ //import Image from "react-native-web/dist/exports/Image";
 
 function FetchMovies(props) {
 
@@ -77,17 +77,26 @@ const moviesList = {
 
 //const FetchMovies = (props) => {
 
-    const [movies, setMovies] = useState({})
+     const [movies, setMovies] = useState({})
+    // const [loading, setLoading] = useState(true)
+     const debouncedSearchTerm = useDebounce(props.url, 500);
+    //
+    //
+    // useEffect(() => {
+    //     if(debouncedSearchTerm){
+    //         setLoading(true)
+    //         console.log(props.url)
+    //         fetch(props.url)
+    //             .then((response) => response.json())
+    //             .then((responseJson) => {
+    //                 setLoading(false);
+    //                 setMovies(responseJson.docs);
+    //             })
+    //     } else {
+    //         setMovies([])
+    //     }
+    // },[debouncedSearchTerm]);
 
-
-    /* useEffect(() => {
-        fetch('https://facebook.github.io/react-native/movies.json')
-            .then((response) => response.json())
-            .then((responseJson) => {
-                setMovies(responseJson.movies)
-            })
-            
-    }) */
 
     const DisplayMovies = (moviesList.movies).map((movie, index) => (
                     <Movie
@@ -108,8 +117,8 @@ const moviesList = {
 
             <Modal
                 visible={isModalVisible}
-               // style={myStyle}
-               // containerStyle={containerStyle}
+                style={styles.containerStyle}
+                containerStyle={containerStyle}
             >
 
                 <View >
@@ -122,7 +131,7 @@ const moviesList = {
                         source={{uri: poster}}
                        // className="Poster"
                     />
-                    <Button onPress={() => setIsModalVisible(false)}>Close</Button>
+                    <Button  title= {''} onPress={() => setIsModalVisible(false)}>Close</Button>
                 </View>
 
             </Modal>
@@ -144,15 +153,54 @@ const moviesList = {
 
 }
 
+
 const styles = StyleSheet.create({
     noResult: {
         color: "red",
         alignItems: 'center',
     },
+    containerStyle: {
+        backgroundColor: "black",
+        width: "80%",
+        height: "100%",
+        textAlign: "center",
+        display: "flex",
+        alignContent: "center",
+        position: "absolute",
+        top: "-5%",
+        left: "10%",
+    },
+    myStyle: {
+        backgroundColor: "rgba(0, 0, 0, 0.2)",
+        height: "100%",
+        width: "100%",
+    },
 
 });
 
 export default FetchMovies
+
+
+
+function useDebounce(value, delay) {
+    // State and setters for debounced value
+    const [debouncedValue, setDebouncedValue] = useState(value);
+
+    useEffect(
+        () => {
+            const handler = setTimeout(() => {
+                setDebouncedValue(value);
+            }, delay);
+
+            return () => {
+                clearTimeout(handler);
+            };
+        },
+        [value]
+    );
+    return debouncedValue;
+}
+
 
 /* 
 

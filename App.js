@@ -7,48 +7,36 @@ import Page from './components/Page'
 
 const  App = () => {
 
-  const [searchText, setSearchText] = useState(null)
-  const [order, setOrder] = useState("1")
-  const [sort, setSort] = useState("Year")
-  const [filter, setFilter] = useState("")
-
-  const handleOptionChanges = (search, order, sort, filter) => {
-    setSearchText(search)
-    setOrder(order)
-    setSort(sort)
-    setFilter(filter)
-  }
-
+  const [page, setPage] = useState(1)
   const [url, setUrl] = useState("http://it2810-13.idi.ntnu.no:4000/movies?title=&order=-1&sort=Year&page=1")
 
+  const handleOptionChanges = (search, orderBy, sortBy, filterBy) => {
+    setUrl("http://it2810-13.idi.ntnu.no:4000/movies?title="+search+"&order="+orderBy+"&sort="+sortBy+"&page=1&genre="+filterBy)
+
+  }
+
+  const handlePageChange = (p) => {
+    setUrl(url.replace("page="+page,"page="+p));
+    setPage(p)
+  }
 
   return (
-    
-    <View style={styles.container}>
-      <Header />
-      <ScrollView style={styles.scrollView}>
-        <View style={styles.innerView}>
-          <Search 
-            handleOptionChanges={handleOptionChanges}
-            />
-            
-          {searchText ? 
-            <View>
-              <Text style={{color: 'white'}} >Searched for: {searchText}</Text>
-              <Text style={{color: 'white'}} >Order: {order}</Text>
-              <Text style={{color: 'white'}} >Sort: {sort}</Text>
-              <Text style={{color: 'white'}} >Filter: {filter}</Text>
-            </View>
-            : null}
 
+      <View style={styles.container}>
+        <Header />
+        <ScrollView style={styles.scrollView}>
+          <Search handleOptionChanges={handleOptionChanges}/>
+          <View style={styles.innerView}>
             <FetchMovies movies={url}/>
-            <Page />
+            <Page setPage={handlePageChange}/>
           </View>
+
         </ScrollView>
-    </View>
-    
+      </View>
+
   );
 }
+
 
 
 const styles = StyleSheet.create({
@@ -63,6 +51,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
   },
   innerView: {
+    marginTop: 30,
     alignItems: 'center'
   },
 });
