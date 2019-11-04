@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
 import { Button, Overlay } from 'react-native-elements'
+import StarRating from 'react-native-star-rating'
 
 import Movie from './Movie'
 
@@ -14,6 +15,7 @@ const FetchMovies = (props) => {
 
 
     const debouncedSearchTerm = useDebounce(props.url, 500);
+
 
     useEffect(() => {
         if(debouncedSearchTerm){
@@ -65,7 +67,19 @@ const FetchMovies = (props) => {
                     <View style={{alignItems: 'stretch', flex: 1}}>
                         <Text style={{color: 'white',  fontSize: 30, textAlign: 'center', marginBottom: 10, letterSpacing: 2}}>{title}</Text>
                         <Text style={{color: 'white', textAlign: 'center', marginBottom: 5}}><Text style={{fontWeight: "bold"}}>Genre: </Text>{genre}</Text>
-                        <Text style={{color: 'white', textAlign: 'center', marginBottom: 5}}><Text style={{fontWeight: "bold"}}>Average rating: </Text>{average}</Text>
+
+                        <Text style={{color: 'white', textAlign: 'center', marginBottom: 5}}><Text style={{fontWeight: "bold"}}>Average rating: </Text></Text>
+                        <View
+                        style={{paddingLeft: 40, paddingRight:40}}
+                        >
+                            <StarRating
+                                emptyStar={'star'}
+                                maxStars={5}
+                                rating={average}
+                                starSize={30}
+                                fullStarColor={'#ffd500'}
+                            /></View>
+                        <Text>{'\n'}</Text>
                         <Text style={{color: 'white', textAlign: 'center', marginBottom: 25, lineHeight: 20}}><Text style={{fontWeight: "bold"}}>Plot: </Text>{plot}</Text>
                         <Image style={{width: 175, height: 300, alignSelf: 'center'}} source={{uri: poster}}/>
                         <Button title="Hide modal" onPress={() => setIsModalVisible(false)} buttonStyle={{backgroundColor: 'red'}} containerStyle={{marginTop: 10, flex: 1, justifyContent: 'flex-end', marginBottom: 10}} />
