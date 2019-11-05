@@ -5,6 +5,7 @@ import Header from './components/Header'
 import FetchMovies from './components/FetchMovies'
 import Page from './components/Page'
 
+
 const  App = () => {
 
   const [page, setPage] = useState(1)
@@ -21,6 +22,7 @@ const  App = () => {
     setUrl(url.replace("page="+page,"page="+p));
     setPage(p)
   }
+  
 
   return (
     

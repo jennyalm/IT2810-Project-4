@@ -87,10 +87,11 @@ const Search = (props) => {
                             onValueChange={(itemValue, itemIndex) => handleOptionChange(itemValue)}
                             itemStyle={{color: "white"}}
                         >
-                            <Picker.Item label="Title A-Z" value="titleAsc" />
-                            <Picker.Item label="Title Z-A" value="titleDesc" />
                             <Picker.Item label="Year New-Old" value="yearAsc" />
                             <Picker.Item label="Year Old-New" value="yearDesc" />
+                            <Picker.Item label="Title A-Z" value="titleAsc" />
+                            <Picker.Item label="Title Z-A" value="titleDesc" />
+                            
                         </Picker>
                     </View>
                     <View style={styles.filterContainer}>
