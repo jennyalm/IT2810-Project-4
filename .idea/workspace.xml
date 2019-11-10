@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d1b469a7-b78c-46a3-9b55-4f7f3cebd94b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -63,7 +61,7 @@
       <workItem from="1572609269260" duration="13206000" />
       <workItem from="1572777535927" duration="4057000" />
       <workItem from="1572856403301" duration="21409000" />
-      <workItem from="1573359162207" duration="14322000" />
+      <workItem from="1573359162207" duration="14732000" />
     </task>
     <task id="LOCAL-00001" summary="#4 Fix Popup">
       <created>1572782258238</created>
