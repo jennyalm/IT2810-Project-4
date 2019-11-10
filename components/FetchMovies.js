@@ -8,6 +8,8 @@ import axios from "axios";
 
 const FetchMovies = (props) => {
 
+
+    // define the hook states
     const [movies, setMovies] = useState([])
     const [loading, setLoading] = useState(true)
     const [total, setTotal] = useState(1)
@@ -15,7 +17,7 @@ const FetchMovies = (props) => {
     const [rating, setRating] = useState(0);
     const [isModalVisible, setIsModalVisible] = useState(false)
 
-
+    // Use the debounce function when useEffect executes
     const debouncedSearchTerm = useDebounce(props.url, 500);
 
     const onStarRatingPress = (nextValue, prevValue, name) => {
@@ -161,7 +163,7 @@ const FetchMovies = (props) => {
         </View>
     )
 }
-// https://dev.to/gabe_ragland/debouncing-with-react-hooks-jci  NÅR JEG SKAL KOMMENTERE KODEN BRUK DENNE!!!!
+
 export default FetchMovies
 
 function useDebounce(value, delay) {
