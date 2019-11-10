@@ -21,31 +21,7 @@ const Movie = (props) => {
     const averageRating = arr => parseFloat(arr.reduce((p,c) => p + c, 0) / (arr.length)).toFixed(1);
 
 
-    // const onStarRatingPress = (nextValue, prevValue, name) => {
-    //
-    //     const content = {
-    //         "rating": nextValue
-    //     }
-    //
-    //
-    //
-    //     setRating(nextValue);
-    //     console.log("Rating: " + nextValue)
-    //
-    //     if (!(_retrieveData() === props.title)){
-    //
-    //         setCanGiveRating(false);
-    //
-    //     // put the content in the database
-    //     // it finds the movie in the database with imdbID then places the rating under Rating which is an array.
-    //     axios.put("http://it2810-13.idi.ntnu.no:4000/movies/" + props.imdbID, content)
-    //     console.log("http://it2810-13.idi.ntnu.no:4000/movies/" + props.imdbID)
-    //
-    //
-    //     _storeData()
-    //
-    //     }
-    // }
+    
 
     const _storeData = async () => {
         try {
@@ -127,12 +103,11 @@ const Movie = (props) => {
 
             </View>
 
-            <Text>{'\n'}</Text>
 
-            {!canGiveRating ?
-                <Text style={{color: 'white', textAlign: 'center'}}>Average rating: {averageRating(props.allRatings)}</Text>
-                : null
-            }
+            
+            <Text style={{color: 'white', textAlign: 'center'}}>Average rating: {averageRating(props.allRatings)}</Text>
+                
+            
 
             <Text>{'\n\n\n'}</Text>
 

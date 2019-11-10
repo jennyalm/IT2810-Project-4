@@ -75,11 +75,12 @@ const Search = (props) => {
                             selectedValue={selectedSort}
                             onValueChange={(itemValue, itemIndex) => handleOptionChange(itemValue)}
                             itemStyle={{color: "white"}}
+                            //style={{color: 'red'}}
                         >
-                            <Picker.Item label="Year New-Old" value="yearAsc" />
-                            <Picker.Item label="Year Old-New" value="yearDesc" />
-                            <Picker.Item label="Title A-Z" value="titleAsc" />
-                            <Picker.Item label="Title Z-A" value="titleDesc" />
+                            <Picker.Item label="Year New-Old" color="white" value="yearAsc" />
+                            <Picker.Item label="Year Old-New" color="white" value="yearDesc" />
+                            <Picker.Item label="Title A-Z" color="white" value="titleAsc" />
+                            <Picker.Item label="Title Z-A" color="white" value="titleDesc" />
                             
                         </Picker>
                     </View>
@@ -90,12 +91,12 @@ const Search = (props) => {
                             onValueChange={(itemValue, itemIndex) => handleFilterChange(itemValue)}
                             itemStyle={{color: "white"}}
                         >
-                            <Picker.Item label="No filter" value="" />
-                            <Picker.Item label="Action" value="action" />
-                            <Picker.Item label="Comedy" value="comedy" />
-                            <Picker.Item label="Drama" value="drama" />
-                            <Picker.Item label="Fantasy" value="fantasy" />
-                            <Picker.Item label="Thriller" value="thriller" />
+                            <Picker.Item label="No filter" value="" color="white" />
+                            <Picker.Item label="Action" value="action" color="white" />
+                            <Picker.Item label="Comedy" value="comedy" color="white" />
+                            <Picker.Item label="Drama" value="drama" color="white" />
+                            <Picker.Item label="Fantasy" value="fantasy" color="white" />
+                            <Picker.Item label="Thriller" value="thriller" color="white" />
                         </Picker>
                     </View>
                 </View>

@@ -26,7 +26,7 @@ const  App = () => {
           console.log("value: " + value);
           setPrev(JSON.stringify(value));
         } else {
-          setPrev("")
+          setPrev("No previous search")
         }
       } catch (error) {
       }
