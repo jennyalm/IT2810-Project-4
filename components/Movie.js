@@ -12,12 +12,12 @@ import axios from 'axios';
 
 const Movie = (props) => {
 
-
+    // define hook states
     const [rating, setRating] = useState(0);
     const [canGiveRating, setCanGiveRating] = useState(true);
     const [ButtonColor, setButtonColor] = useState('grey')
 
-
+    // calculates the average rating
     const averageRating = arr => parseFloat(arr.reduce((p,c) => p + c, 0) / (arr.length)).toFixed(1);
 
 

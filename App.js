@@ -8,6 +8,7 @@ import Page from './components/Page'
 
 const  App = () => {
 
+  // define hook states
   const [page, setPage] = useState(1)
   const [url, setUrl] = useState("http://it2810-13.idi.ntnu.no:4000/movies?title=&order=-1&sort=Year&page=1")
   const [pages, setPages] = useState(1)
@@ -25,7 +26,7 @@ const  App = () => {
           console.log("value: " + value);
           setPrev(JSON.stringify(value));
         } else {
-          setPrev("No previous search")
+          setPrev("")
         }
       } catch (error) {
       }
@@ -35,7 +36,9 @@ const  App = () => {
   }, [])
 
 
-
+  // this will be executed from Search.js and will set the local state Url. 
+  // When the url state changes it will fetch new movies from FetchMovies with useEffect since url is given as props.
+  // we also set page to 1 when a new search or option/filter is selected. 
   const handleOptionChanges = async (search, orderBy, sortBy, filterBy) => {
     setPage(1)
     setUrl("http://it2810-13.idi.ntnu.no:4000/movies?title="+search+"&order="+orderBy+"&sort="+sortBy+"&page=1&genre="+filterBy)
@@ -58,6 +61,7 @@ const  App = () => {
     }
   }
 
+  // When navigating to a new page, we update the url, which then runs FetchMovies useEffect, since again the url is given as props.
   const handlePageChange = (p) => {
     setUrl(url.replace("page="+page,"page="+p));
     setPage(p)
@@ -70,7 +74,7 @@ const  App = () => {
       <Header />
       <ScrollView style={styles.scrollView}>
       <Search handleOptionChanges={handleOptionChanges}/>
-        <Text style={{color: "white"}}>Previous search: {prevSearch}</Text>
+        {prevSearch ? <Text style={{color: "white", textAlign: 'center'}}>Previous search: {prevSearch}</Text> : null }
 
         <View style={styles.innerView}>
           <FetchMovies url={url} setPages={setPages} setTotal={setTotal}/>

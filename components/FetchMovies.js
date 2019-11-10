@@ -6,15 +6,21 @@ import Movie from './Movie'
 
 const FetchMovies = (props) => {
 
+
+    // define the hook states
     const [movies, setMovies] = useState([])
     const [loading, setLoading] = useState(true)
     const [total, setTotal] = useState(1)
     const [show, setShow] = useState(false);
     const [isModalVisible, setIsModalVisible] = useState(false)
 
-
+    // Use the debounce function when useEffect executes
     const debouncedSearchTerm = useDebounce(props.url, 500);
 
+    // fetches from the DB and updates our hooks. If debounceSearchTerm there is a valid search and everything executes
+    // else, the search is invalid, or equal to the current search. This negates the infite loops with useEffect
+    // and fixes the issue with the states not updating quick enough. 
+    // we based our debounce function on the following example: https://dev.to/gabe_ragland/debouncing-with-react-hooks-jci
     useEffect(() => {
         if(debouncedSearchTerm){
             setLoading(true)
@@ -40,9 +46,8 @@ const FetchMovies = (props) => {
     const [genre, setGenre] = useState("");
     const [poster, setPoster] = useState("");
     const [average, setAverage] = useState("");
-    // const [imdbID, setImdbID] = useState("");
 
-
+    // updates the modal
     const toggleModal = (t,p,g,po,a) => {
         setIsModalVisible(true);
         setTitle(t);
@@ -92,7 +97,7 @@ const FetchMovies = (props) => {
         </View>
     )
 }
-// https://dev.to/gabe_ragland/debouncing-with-react-hooks-jci  NÅR JEG SKAL KOMMENTERE KODEN BRUK DENNE!!!!
+
 export default FetchMovies
 
 function useDebounce(value, delay) {

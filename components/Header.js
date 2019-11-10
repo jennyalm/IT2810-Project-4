@@ -11,7 +11,9 @@ const Header = () => {
                 style={{ flex: 5, width: '15%', height: '15%', alignSelf: 'center',}}
                 source={require('../assets/logo.png')}
             />
-            <Icon name="bar-chart-o" size={40} color="red" style={{position: 'absolute', top: 60, left: 300}}/>
+            {/* <Icon name="bar-chart-o" size={40} color="red" style={{position: 'absolute', top: 60, left: 300}}/> 
+                if we want to implement a display advanced info, we would use this button. However advanced info was not needed in this exercise
+            */}
         </View>
     )
 }

@@ -13,6 +13,9 @@ const Search = (props) => {
     const [sort, setSort] = useState("Year")
     const [filter, setFilter] = useState("")
 
+    // checks which option is selected and updates local states, and runs handleOptionChanges in App.
+    // planned to have x equal a object with both order and sort, however this came with a few issues, 
+    // so if we were to improve the app in the future we would probably fix this code and shorten it.
     const handleOptionChange = (x) => {
         if(x === "titleAsc"){
             props.handleOptionChanges(searchText, "1", "Title", filter)
@@ -41,6 +44,7 @@ const Search = (props) => {
 
     }
 
+    // updates the state filter and runs handleOptionChanges in App
     const handleFilterChange = (f) => {
         setFilter(f)
         props.handleOptionChanges(searchText, order, sort, f)
@@ -58,22 +62,7 @@ const Search = (props) => {
                 onSubmitEditing={() => props.handleOptionChanges(searchText, order, sort, filter)}
                 returnKeyType='search'
             />
-            {/* <TextInput 
-                placeholder=" Search (e.g the hobbit)" 
-                style={styles.inputField}
-                value={searchText} 
-                onChangeText={text => setSearchText(text)} 
-            /> */}
-            
-            {/* <Button
-                containerStyle={{marginBottom: 10}}
-                buttonStyle={{backgroundColor: 'red'}}
-                title="Search" 
-                onPress={() => props.handleOptionChanges(searchText, order, sort, filter)} 
-            /> */}
-
-
-
+           
             { toggleOptions
                 ? <Button title="Hide Option   " onPress={() => setToggleOptions(false)} type="outline" titleStyle={{color: 'grey'}} buttonStyle={{borderColor: 'red'}} icon={<Icon name="arrow-up" size={20} color="grey" />} iconRight/>
                 : <Button title="Show Options   " onPress={() => setToggleOptions(true)} type="outline" titleStyle={{color: 'grey'}} buttonStyle={{borderColor: 'red'}} icon={<Icon name="arrow-down" size={20} color="grey" />} iconRight/>}
