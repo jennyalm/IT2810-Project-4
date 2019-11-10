@@ -19,7 +19,7 @@ persistent lagring på brukerens enhet av det forrige søket brukeren foretok se
 ## Teknologi
 
 Selv om appen i stor grad baserer seg på Prosjekt 3 og har gjenkjennelig komponentsstruktur, har vi gjort noen endringer
-i selve logikken her og der, noe som har vi mener har resultert i mindre og mer oversiktelig kode. Vi har for eksempel i
+i selve logikken her og der, noe som vi mener har resultert i mindre og mer oversiktelig kode. Vi har for eksempel i
 stor grad gått vekk fra React Redux til fordel for å bruke useState Hooks, da vi har fått intrykk av at det relativt nylig
 innførte konseptet React Hooks er fremtiden for utvikling i React, og dermed ønsket å sette oss enda mer inn det enn vi
 har gjort i de foregående prosjektene. Sidehåndtering er også forskjellig fra forrige gang siden vi ikke lenger har
