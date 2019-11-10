@@ -40,7 +40,7 @@ allerde er i React.
 
 #### Expo 
 
-I utviklingen har vi brukt `expo-cli` både for initierer prosjektet gjennom `expo init` og for å manuelt **brukerteste**
+I utviklingen har vi brukt `expo-cli` både for å initiere prosjektet gjennom `expo init` og for å manuelt **brukerteste**
 applikasjonen ende-til-ende på iOS og Android.
 
 #### Tredjepartskomponenter
