@@ -21,31 +21,31 @@ const Movie = (props) => {
     const averageRating = arr => parseFloat(arr.reduce((p,c) => p + c, 0) / (arr.length)).toFixed(1);
 
 
-    const onStarRatingPress = (nextValue, prevValue, name) => {
-
-        const content = {
-            "rating": nextValue
-        }
-
-
-
-        setRating(nextValue);
-        console.log("Rating: " + nextValue)
-
-        if (!(_retrieveData() === props.title)){
-
-            setCanGiveRating(false);
-
-        // put the content in the database
-        // it finds the movie in the database with imdbID then places the rating under Rating which is an array.
-        axios.put("http://it2810-13.idi.ntnu.no:4000/movies/" + props.imdbID, content)
-        console.log("http://it2810-13.idi.ntnu.no:4000/movies/" + props.imdbID)
-
-
-        _storeData()
-
-        }
-    }
+    // const onStarRatingPress = (nextValue, prevValue, name) => {
+    //
+    //     const content = {
+    //         "rating": nextValue
+    //     }
+    //
+    //
+    //
+    //     setRating(nextValue);
+    //     console.log("Rating: " + nextValue)
+    //
+    //     if (!(_retrieveData() === props.title)){
+    //
+    //         setCanGiveRating(false);
+    //
+    //     // put the content in the database
+    //     // it finds the movie in the database with imdbID then places the rating under Rating which is an array.
+    //     axios.put("http://it2810-13.idi.ntnu.no:4000/movies/" + props.imdbID, content)
+    //     console.log("http://it2810-13.idi.ntnu.no:4000/movies/" + props.imdbID)
+    //
+    //
+    //     _storeData()
+    //
+    //     }
+    // }
 
     const _storeData = async () => {
         try {
@@ -95,11 +95,11 @@ const Movie = (props) => {
                     // name={props.title} /* name of the radio input, it is required */
                     emptyStar={'star'}
                     maxStars={5}
-                    rating={rating}
-                    selectedStar={(rating) => onStarRatingPress(rating)}
+                    rating={Math.floor(averageRating(props.allRatings))}
+                    //selectedStar={(rating) => onStarRatingPress(rating)}
                     emptyStarColor={'grey'}
                     fullStarColor={'#ffd500'}
-                    disabled={!canGiveRating}
+                    disabled={true}
                     starSize={40}
                     //editing={CanGiveRating}
 
