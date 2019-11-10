@@ -1,11 +1,15 @@
 import React, {useState, useEffect} from 'react';
-import { StyleSheet, Text, View, SafeAreaView, ScrollView } from 'react-native';
+import {StyleSheet, Text, View, SafeAreaView, ScrollView, AsyncStorage} from 'react-native';
 import Search from './components/Search';
 import Header from './components/Header'
 import FetchMovies from './components/FetchMovies'
 import Page from './components/Page'
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5cd62970f4b132819665bc3ebb63104a4b31060c
 const  App = () => {
 
   const [page, setPage] = useState(1)
@@ -13,9 +17,49 @@ const  App = () => {
   const [pages, setPages] = useState(1)
   const [total, setTotal] = useState(1)
 
-  const handleOptionChanges = (search, orderBy, sortBy, filterBy) => {
+  const [prevSearch, setPrev] = useState("loading");
+
+  useEffect(() => {
+    // code to run on component mount
+    console.log("useEffect")
+    async function prev() {
+      try {
+        const value = await AsyncStorage.getItem("searches");
+        if (value !== null) {
+          console.log("value: " + value);
+          setPrev(JSON.stringify(value));
+        } else {
+          setPrev("No previous search")
+        }
+      } catch (error) {
+      }
+    }
+    prev()
+
+  }, [])
+
+
+
+  const handleOptionChanges = async (search, orderBy, sortBy, filterBy) => {
     setPage(1)
     setUrl("http://it2810-13.idi.ntnu.no:4000/movies?title="+search+"&order="+orderBy+"&sort="+sortBy+"&page=1&genre="+filterBy)
+    let newHistory;
+    try {
+      const value = await AsyncStorage.getItem("searches");
+      if (value !== null) {
+        console.log(value);
+        setPrev(JSON.stringify(value));
+      } else {
+        setPrev("empty")
+      }
+    } catch (error) {
+    }
+
+    try {
+      await AsyncStorage.setItem("searches", search);
+    } catch (error) {
+      // Error saving data
+    }
   }
 
   const handlePageChange = (p) => {
@@ -25,11 +69,13 @@ const  App = () => {
   
 
   return (
-    
+
     <View style={styles.container}>
       <Header />
       <ScrollView style={styles.scrollView}>
       <Search handleOptionChanges={handleOptionChanges}/>
+        <Text style={{color: "white"}}>Previous search: {prevSearch}</Text>
+
         <View style={styles.innerView}>
           <FetchMovies url={url} setPages={setPages} setTotal={setTotal}/>
           {total === 0 ? null : <Page setPage={handlePageChange} page={page} pages={pages}/>}
@@ -37,7 +83,7 @@ const  App = () => {
 
       </ScrollView>
     </View>
-    
+
   );
 }
 
