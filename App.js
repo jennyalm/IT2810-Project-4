@@ -6,10 +6,6 @@ import FetchMovies from './components/FetchMovies'
 import Page from './components/Page'
 
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 5cd62970f4b132819665bc3ebb63104a4b31060c
 const  App = () => {
 
   const [page, setPage] = useState(1)
