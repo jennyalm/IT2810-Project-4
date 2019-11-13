@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {StyleSheet, Text, View, SafeAreaView, ScrollView, AsyncStorage} from 'react-native';
+import { Button } from 'react-native-elements';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import Search from './components/Search';
 import Header from './components/Header'
 import FetchMovies from './components/FetchMovies'
@@ -13,9 +15,10 @@ const  App = () => {
   const [url, setUrl] = useState("http://it2810-13.idi.ntnu.no:4000/movies?title=&order=-1&sort=Year&page=1")
   const [pages, setPages] = useState(1)
   const [total, setTotal] = useState(1)
-
   const [prevSearch, setPrev] = useState("loading");
 
+  // Sets the initial value of the previous search from AsyncStorage, if there is no previous search on device
+  // it will be set to null causing the button to execute previous search to not appear
   useEffect(() => {
     // code to run on component mount
     console.log("useEffect")
@@ -24,9 +27,9 @@ const  App = () => {
         const value = await AsyncStorage.getItem("searches");
         if (value !== null) {
           console.log("value: " + value);
-          setPrev(JSON.stringify(value));
+          setPrev(JSON.stringify(value).slice(1, -1));
         } else {
-          setPrev("No previous search")
+          setPrev(null)
         }
       } catch (error) {
       }
@@ -38,18 +41,19 @@ const  App = () => {
 
   // this will be executed from Search.js and will set the local state Url. 
   // When the url state changes it will fetch new movies from FetchMovies with useEffect since url is given as props.
-  // we also set page to 1 when a new search or option/filter is selected. 
+  // we also set page to 1 when a new search or option/filter is selected.
+  // Also handles previous search much like the UseEffect above, but also updates the prevSearch value with whatever was
+  // searched for.
   const handleOptionChanges = async (search, orderBy, sortBy, filterBy) => {
     setPage(1)
     setUrl("http://it2810-13.idi.ntnu.no:4000/movies?title="+search+"&order="+orderBy+"&sort="+sortBy+"&page=1&genre="+filterBy)
-    let newHistory;
     try {
       const value = await AsyncStorage.getItem("searches");
       if (value !== null) {
         console.log(value);
-        setPrev(JSON.stringify(value));
+        setPrev(JSON.stringify(value).slice(1, -1));
       } else {
-        setPrev("empty")
+        setPrev(null)
       }
     } catch (error) {
     }
@@ -74,7 +78,8 @@ const  App = () => {
       <Header />
       <ScrollView style={styles.scrollView}>
       <Search handleOptionChanges={handleOptionChanges}/>
-        {prevSearch ? <Text style={{color: "white", textAlign: 'center'}}>Previous search: {prevSearch}</Text> : null }
+        {prevSearch ? <Button type="clear" title={" Previous search (" + prevSearch + ")"} onPress={() => handleOptionChanges(prevSearch)}
+                icon={<Icon name="caret-left" size={30} color="#348FD5" />}/> : null }
 
         <View style={styles.innerView}>
           <FetchMovies url={url} setPages={setPages} setTotal={setTotal}/>
