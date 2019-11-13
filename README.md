@@ -14,7 +14,7 @@ persistent lagring på brukerens enhet av det forrige søket brukeren foretok se
 * Dynamisk lasting av data med sidehåndtering.
 * Detaljert visning i form av en pop-up (modal) når man trykker på en poster.
 * Mulighet for å gi stjernerangering av filmene (lagres i databasen).
-* Visning av forrige søk gjort på enheten.
+* Knapp for å utføre forrige søk gjort på enheten (knappen vil bare vises hvis det faktisk foreligger et tidligere søk)
 
 ## Teknologi
 
@@ -36,7 +36,7 @@ største forskjellen er vel egentlig at man gjør styling ved hjelp av et styles
 til React hvor man helst baserer seg på en separat CSS-fil. Kort fortalt er JavaScript *enda* mer altomfattende enn det
 allerde er i React.
 
-**AsyncStorage** har vi brukt for i vise det siste søket gjort på enheten uavhengig av om applikasjonen har blitt lukket.
+**AsyncStorage** har vi brukt for å kunne gjenta det siste søket gjort på enheten uavhengig av om applikasjonen har blitt lukket.
 
 #### Expo 
 
