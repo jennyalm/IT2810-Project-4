@@ -77,10 +77,7 @@ const  App = () => {
     <View style={styles.container}>
       <Header />
       <ScrollView style={styles.scrollView}>
-      <Search handleOptionChanges={handleOptionChanges}/>
-        {prevSearch ? <Button type="clear" title={" Previous search (" + prevSearch + ")"} onPress={() => handleOptionChanges(prevSearch)}
-                icon={<Icon name="caret-left" size={30} color="#348FD5" />}/> : null }
-
+      <Search handleOptionChanges={handleOptionChanges} prevSearch={prevSearch}/>
         <View style={styles.innerView}>
           <FetchMovies url={url} setPages={setPages} setTotal={setTotal}/>
           {total === 0 ? null : <Page setPage={handlePageChange} page={page} pages={pages}/>}
