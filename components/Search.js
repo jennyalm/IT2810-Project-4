@@ -56,7 +56,7 @@ const Search = (props) => {
             <SearchBar
                 containerStyle={{backgroundColor: 'black', borderBottomColor: 'transparent', borderTopColor: 'transparent', paddingHorizontal: 0}}
                 inputStyle={{color: 'white'}}
-                placeholder="Search (e.g the hobbit)"
+                placeholder="Search (e.g the godfather)"
                 onChangeText={text => setSearchText(text)}
                 value={searchText}
                 onSubmitEditing={() => props.handleOptionChanges(searchText, order, sort, filter)}
