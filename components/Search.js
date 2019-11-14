@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { StyleSheet, Text, View, TextInput, Picker } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Picker, Platform } from 'react-native';
 import { SearchBar, Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 const Search = (props) => {
@@ -56,7 +56,7 @@ const Search = (props) => {
             <SearchBar
                 containerStyle={{backgroundColor: 'black', borderBottomColor: 'transparent', borderTopColor: 'transparent', paddingHorizontal: 0}}
                 inputStyle={{color: 'white'}}
-                placeholder="Search (e.g the hobbit)"
+                placeholder="Search (e.g the godfather)"
                 onChangeText={text => setSearchText(text)}
                 value={searchText}
                 onSubmitEditing={() => props.handleOptionChanges(searchText, order, sort, filter)}
@@ -70,17 +70,19 @@ const Search = (props) => {
                 <View style={styles.optionContainer}>
                     <View style={styles.sortContainer}>
                         <View style={{alignItems: 'center'}}><Text style={{color: 'white'}}>Sort</Text></View>
-
+                        
                         <Picker
                             selectedValue={selectedSort}
                             onValueChange={(itemValue, itemIndex) => handleOptionChange(itemValue)}
                             itemStyle={{color: "white"}}
-                            //style={{color: 'red'}}
+                            style={{backgroundColor: Platform.OS === "android" ? 'white' : '#1c272b'}}
                         >
-                            <Picker.Item label="Year New-Old" color="white" value="yearAsc" />
-                            <Picker.Item label="Year Old-New" color="white" value="yearDesc" />
-                            <Picker.Item label="Title A-Z" color="white" value="titleAsc" />
-                            <Picker.Item label="Title Z-A" color="white" value="titleDesc" />
+
+                            
+                            <Picker.Item label="Year New-Old" color={Platform.OS === "android" ? "black" : "white"} value="yearAsc"  style={{backgroundColor: 'red'}} />
+                            <Picker.Item label="Year Old-New" color={Platform.OS === "android" ? "black" : "white"} value="yearDesc"  style={{backgroundColor: 'red'}} />
+                            <Picker.Item label="Title A-Z" color={Platform.OS === "android" ? "black" : "white"} value="titleAsc" style={{backgroundColor: 'red'}} />
+                            <Picker.Item label="Title Z-A" color={Platform.OS === "android" ? "black" : "white"} value="titleDesc"  style={{backgroundColor: 'red'}} />
                             
                         </Picker>
                     </View>
@@ -90,13 +92,15 @@ const Search = (props) => {
                             selectedValue={filter}
                             onValueChange={(itemValue, itemIndex) => handleFilterChange(itemValue)}
                             itemStyle={{color: "white"}}
+                            style={{backgroundColor: Platform.OS === "android" ? 'white' : '#1c272b'}}
+
                         >
-                            <Picker.Item label="No filter" value="" color="white" />
-                            <Picker.Item label="Action" value="action" color="white" />
-                            <Picker.Item label="Comedy" value="comedy" color="white" />
-                            <Picker.Item label="Drama" value="drama" color="white" />
-                            <Picker.Item label="Fantasy" value="fantasy" color="white" />
-                            <Picker.Item label="Thriller" value="thriller" color="white" />
+                            <Picker.Item label="No filter" value="" color={Platform.OS === "android" ? "black" : "white"} />
+                            <Picker.Item label="Action" value="action" color={Platform.OS === "android" ? "black" : "white"} />
+                            <Picker.Item label="Comedy" value="comedy" color={Platform.OS === "android" ? "black" : "white"} />
+                            <Picker.Item label="Drama" value="drama" color={Platform.OS === "android" ? "black" : "white"} />
+                            <Picker.Item label="Fantasy" value="fantasy" color={Platform.OS === "android" ? "black" : "white"} />
+                            <Picker.Item label="Thriller" value="thriller" color={Platform.OS === "android" ? "black" : "white"} />
                         </Picker>
                     </View>
                 </View>
