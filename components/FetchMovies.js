@@ -8,6 +8,8 @@ import axios from "axios";
 
 const FetchMovies = (props) => {
 
+
+    // define the hook states
     const [movies, setMovies] = useState([])
     const [loading, setLoading] = useState(true)
     const [total, setTotal] = useState(1)
@@ -15,7 +17,7 @@ const FetchMovies = (props) => {
     const [rating, setRating] = useState(0);
     const [isModalVisible, setIsModalVisible] = useState(false)
 
-
+    // Use the debounce function when useEffect executes
     const debouncedSearchTerm = useDebounce(props.url, 500);
 
     const onStarRatingPress = (nextValue, prevValue, name) => {
@@ -34,8 +36,11 @@ const FetchMovies = (props) => {
         axios.put("http://it2810-13.idi.ntnu.no:4000/movies/" + imdbID, content)
         console.log("http://it2810-13.idi.ntnu.no:4000/movies/" + imdbID)
 
+        console.log("settes inn i db" + content)
+
     }
 
+    // updates DB after modal is closed
     const press = () =>{
         setIsModalVisible(false);
         updateDB(rating);
@@ -44,28 +49,11 @@ const FetchMovies = (props) => {
 
     }
 
-    // const _storeData = async () => {
-    //     try {
-    //         console.log('gikk!')
-    //         await AsyncStorage.setItem(props.imdbID, props.title);
-    //     } catch (error) {
-    //         // Error saving data
-    //     }
-    // };
-    //
-    // const _retrieveData = async () => {
-    //     try {
-    //         const value = await AsyncStorage.getItem(props.imdbID);
-    //         if (value !== null) {
-    //             // We have data!!
-    //             console.log(value);
-    //         }
-    //     } catch (error) {
-    //         // Error retrieving data
-    //     }
-    // };
 
-
+    // fetches from the DB and updates our hooks. If debounceSearchTerm there is a valid search and everything executes
+    // else, the search is invalid, or equal to the current search. This negates the infite loops with useEffect
+    // and fixes the issue with the states not updating quick enough. 
+    // we based our debounce function on the following example: https://dev.to/gabe_ragland/debouncing-with-react-hooks-jci
     useEffect(() => {
         if(debouncedSearchTerm){
             setLoading(true)
@@ -92,7 +80,6 @@ const FetchMovies = (props) => {
     const [poster, setPoster] = useState("");
     const [average, setAverage] = useState("");
     const [imdbID, setImdbID] = useState("");
-    // const [imdbID, setImdbID] = useState("");
 
 
     const toggleModal = (t,p,g,po,a,i) => {
@@ -104,8 +91,6 @@ const FetchMovies = (props) => {
         setAverage(a);
         setImdbID(i);
     }
-
-    const averageRating = arr => parseFloat(arr.reduce((p,c) => p + c, 0) / (arr.length)).toFixed(1);
 
 
     return(
@@ -120,7 +105,6 @@ const FetchMovies = (props) => {
                     <View style={{alignItems: 'stretch', flex: 1}}>
                         <Text style={{color: 'white',  fontSize: 30, textAlign: 'center', marginBottom: 10, letterSpacing: 2}}>{title}</Text>
                         <Text style={{color: 'white', textAlign: 'center', marginBottom: 5}}><Text style={{fontWeight: "bold"}}>Genre: </Text>{genre}</Text>
-
                         <Text style={{color: 'white', textAlign: 'center', marginBottom: 5}}><Text style={{fontWeight: "bold"}}>Give Rating: </Text></Text>
                         <View
                         style={{paddingLeft: 40, paddingRight:40}}
@@ -131,7 +115,6 @@ const FetchMovies = (props) => {
                                 rating={rating}
                                 starSize={30}
                                 fullStarColor={'#ffd500'}
-                                //disabled={!canGiveRating}
                                 selectedStar={(rating) => onStarRatingPress(rating)}
                             /></View>
                         <Text>{'\n'}</Text>
@@ -161,7 +144,7 @@ const FetchMovies = (props) => {
         </View>
     )
 }
-// https://dev.to/gabe_ragland/debouncing-with-react-hooks-jci  NÅR JEG SKAL KOMMENTERE KODEN BRUK DENNE!!!!
+
 export default FetchMovies
 
 function useDebounce(value, delay) {
