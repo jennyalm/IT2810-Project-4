@@ -69,6 +69,20 @@ Søk og resultat:
 
 ![alt: text]( assets/IMG_1708.PNG)
 
+Options meny med mulighet for å se forrige søk:
+
+![alt: text]( assets/IMG_1711.PNG)
+
+Side- valg og visning:
+
+![alt: text]( assets/IMG_1710.PNG)
+
+Popup, med info og mulighet for å gi rating:
+
+![alt: text]( assets/IMG_1709.PNG)
+
+
+
 ---
 
 ### Fremgangsmåte for testing av prosjekt
