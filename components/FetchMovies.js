@@ -1,20 +1,57 @@
 import React, {useState, useEffect} from 'react';
-import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
+import {StyleSheet, Text, View, Image, ScrollView, AsyncStorage} from 'react-native';
 import { Button, Overlay } from 'react-native-elements'
-
+import StarRating from 'react-native-star-rating'
 import Movie from './Movie'
+import axios from "axios";
+
 
 const FetchMovies = (props) => {
 
+
+    // define the hook states
     const [movies, setMovies] = useState([])
     const [loading, setLoading] = useState(true)
     const [total, setTotal] = useState(1)
-    const [show, setShow] = useState(false);
+    //const [canGiveRating, setCanGiveRating] = useState(true);
+    const [rating, setRating] = useState(0);
     const [isModalVisible, setIsModalVisible] = useState(false)
 
-
+    // Use the debounce function when useEffect executes
     const debouncedSearchTerm = useDebounce(props.url, 500);
 
+    const onStarRatingPress = (nextValue, prevValue, name) => {
+
+        setRating(nextValue);
+        //setCanGiveRating(false);
+        console.log("Rating: " + nextValue)
+    }
+
+    const updateDB = (nextValue) => {
+        const content = {
+            "rating": nextValue
+        }
+        // put the content in the database
+        // it finds the movie in the database with imdbID then places the rating under Rating which is an array.
+        axios.put("http://it2810-13.idi.ntnu.no:4000/movies/" + imdbID, content)
+        console.log("http://it2810-13.idi.ntnu.no:4000/movies/" + imdbID)
+
+    }
+
+    // updates DB after modal is closed
+    const press = () =>{
+        setIsModalVisible(false);
+        updateDB(rating);
+        setRating(0);
+        console.log("Rating etter popup lukket: " + rating)
+
+    }
+
+
+    // fetches from the DB and updates our hooks. If debounceSearchTerm there is a valid search and everything executes
+    // else, the search is invalid, or equal to the current search. This negates the infite loops with useEffect
+    // and fixes the issue with the states not updating quick enough. 
+    // we based our debounce function on the following example: https://dev.to/gabe_ragland/debouncing-with-react-hooks-jci
     useEffect(() => {
         if(debouncedSearchTerm){
             setLoading(true)
@@ -40,16 +77,17 @@ const FetchMovies = (props) => {
     const [genre, setGenre] = useState("");
     const [poster, setPoster] = useState("");
     const [average, setAverage] = useState("");
-    // const [imdbID, setImdbID] = useState("");
+    const [imdbID, setImdbID] = useState("");
 
 
-    const toggleModal = (t,p,g,po,a) => {
+    const toggleModal = (t,p,g,po,a,i) => {
         setIsModalVisible(true);
         setTitle(t);
         setPlot(p);
         setGenre(g);
         setPoster(po);
         setAverage(a);
+        setImdbID(i);
     }
 
 
@@ -65,10 +103,22 @@ const FetchMovies = (props) => {
                     <View style={{alignItems: 'stretch', flex: 1}}>
                         <Text style={{color: 'white',  fontSize: 30, textAlign: 'center', marginBottom: 10, letterSpacing: 2}}>{title}</Text>
                         <Text style={{color: 'white', textAlign: 'center', marginBottom: 5}}><Text style={{fontWeight: "bold"}}>Genre: </Text>{genre}</Text>
-                        <Text style={{color: 'white', textAlign: 'center', marginBottom: 5}}><Text style={{fontWeight: "bold"}}>Average rating: </Text>{average}</Text>
+                        <Text style={{color: 'white', textAlign: 'center', marginBottom: 5}}><Text style={{fontWeight: "bold"}}>Give Rating: </Text></Text>
+                        <View
+                        style={{paddingLeft: 40, paddingRight:40}}
+                        >
+                            <StarRating
+                                emptyStar={'star'}
+                                maxStars={5}
+                                rating={rating}
+                                starSize={30}
+                                fullStarColor={'#ffd500'}
+                                selectedStar={(rating) => onStarRatingPress(rating)}
+                            /></View>
+                        <Text>{'\n'}</Text>
                         <Text style={{color: 'white', textAlign: 'center', marginBottom: 25, lineHeight: 20}}><Text style={{fontWeight: "bold"}}>Plot: </Text>{plot}</Text>
                         <Image style={{width: 175, height: 300, alignSelf: 'center'}} source={{uri: poster}}/>
-                        <Button title="Hide modal" onPress={() => setIsModalVisible(false)} buttonStyle={{backgroundColor: 'red'}} containerStyle={{marginTop: 10, flex: 1, justifyContent: 'flex-end', marginBottom: 10}} />
+                        <Button title="Hide modal" onPress={() => press()} buttonStyle={{backgroundColor: 'red'}} containerStyle={{marginTop: 10, flex: 1, justifyContent: 'flex-end', marginBottom: 10}} />
                     </View>
                 </ScrollView>
             </Overlay>
@@ -92,7 +142,7 @@ const FetchMovies = (props) => {
         </View>
     )
 }
-// https://dev.to/gabe_ragland/debouncing-with-react-hooks-jci  NÅR JEG SKAL KOMMENTERE KODEN BRUK DENNE!!!!
+
 export default FetchMovies
 
 function useDebounce(value, delay) {

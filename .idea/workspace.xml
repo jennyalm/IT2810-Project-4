@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d1b469a7-b78c-46a3-9b55-4f7f3cebd94b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/splash.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/splash.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/splash.png" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,16 +22,19 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="46" />
-    <option name="y" value="32" />
-    <option name="width" value="1314" />
+    <option name="x" value="45" />
+    <option name="y" value="31" />
+    <option name="width" value="1315" />
     <option name="height" value="815" />
   </component>
+  <component name="ProjectId" id="1TPQGUwKUe1ae1ARc9dRNCDRmzN" />
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1573117813775" />
     <property name="editor.config.ad.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -47,7 +52,7 @@
     </option>
   </component>
   <component name="SvnConfiguration">
-    <configuration />
+    <configuration>C:\Users\admin\AppData\Roaming\Subversion</configuration>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -61,7 +66,10 @@
       <workItem from="1572531246109" duration="288000" />
       <workItem from="1572609269260" duration="13206000" />
       <workItem from="1572777535927" duration="4057000" />
-      <workItem from="1572856403301" duration="21409000" />
+      <workItem from="1572856403301" duration="22668000" />
+      <workItem from="1572896052482" duration="90000" />
+      <workItem from="1572943369945" duration="49000" />
+      <workItem from="1573115008017" duration="2792000" />
     </task>
     <task id="LOCAL-00001" summary="#4 Fix Popup">
       <created>1572782258238</created>
@@ -91,7 +99,21 @@
       <option name="project" value="LOCAL" />
       <updated>1572887489595</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="#9 styling">
+      <created>1572888756295</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1572888756295</updated>
+    </task>
+    <task id="LOCAL-00006" summary="#9 styling">
+      <created>1572889854502</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1572889854502</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -109,12 +131,27 @@
         </entry>
       </map>
     </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="#4 Fix Popup" />
     <MESSAGE value="#10 fix asyncStorage" />
     <MESSAGE value="#5, #10" />
-    <option name="LAST_COMMIT_MESSAGE" value="#5, #10" />
+    <MESSAGE value="#9 styling" />
+    <option name="LAST_COMMIT_MESSAGE" value="#9 styling" />
   </component>
   <component name="masterDetails">
     <states>
