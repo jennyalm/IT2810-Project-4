@@ -105,8 +105,15 @@ const Search = (props) => {
                             </Picker>
                         </View>
                     </View>
-                    {props.prevSearch ? <Button type="clear" title={" Previous search (" + props.prevSearch + ")"} onPress={() => props.handleOptionChanges(props.prevSearch, order, sort, filter)}
-                        icon={<Icon name="caret-left" size={30} color="#348FD5" />}/> : null }
+                    {props.prevSearch ? <Button 
+                                            type="clear" 
+                                            title={" Previous search (" + props.prevSearch + ")"} 
+                                            onPress={() => props.handleOptionChanges(props.prevSearch, "-1", "Year", "")}
+                                            icon={<Icon name="caret-left" size={30} color="red" />}
+                                            titleStyle={{color: "red"}}
+                                        /> 
+                                            
+                                    : null }
                 
                 </View>
                 :

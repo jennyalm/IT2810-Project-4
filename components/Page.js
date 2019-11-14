@@ -20,8 +20,8 @@ const Page = (props) => {
         <View>
             <View><Text style={{color: 'white', textAlign: 'center'}}>{props.page}/{props.pages}</Text></View>
             <View style={styles.buttonContainer}>
-                <Button type="clear" title=" prev" onPress={() => handleChangePage(-1)} icon={<Icon name="arrow-left" size={20} color="#348FD5" />}/>
-                <Button type="clear" title="next " onPress={() => handleChangePage(1)} icon={<Icon name="arrow-right" size={20} color="#348FD5" />} iconRight/>
+                <Button type="clear" title=" prev" titleStyle={{color: "red"}} onPress={() => handleChangePage(-1)} icon={<Icon name="arrow-left" size={20} color="red" />}/>
+                <Button type="clear" title="next " titleStyle={{color: "red"}} onPress={() => handleChangePage(1)} icon={<Icon name="arrow-right" size={20} color="red" />} iconRight/>
             </View>
         </View>
     )
