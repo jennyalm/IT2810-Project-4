@@ -67,42 +67,47 @@ const Search = (props) => {
                 ? <Button title="Hide Option   " onPress={() => setToggleOptions(false)} type="outline" titleStyle={{color: 'grey'}} buttonStyle={{borderColor: 'red'}} icon={<Icon name="arrow-up" size={20} color="grey" />} iconRight/>
                 : <Button title="Show Options   " onPress={() => setToggleOptions(true)} type="outline" titleStyle={{color: 'grey'}} buttonStyle={{borderColor: 'red'}} icon={<Icon name="arrow-down" size={20} color="grey" />} iconRight/>}
             { toggleOptions ?
-                <View style={styles.optionContainer}>
-                    <View style={styles.sortContainer}>
-                        <View style={{alignItems: 'center'}}><Text style={{color: 'white'}}>Sort</Text></View>
-                        
-                        <Picker
-                            selectedValue={selectedSort}
-                            onValueChange={(itemValue, itemIndex) => handleOptionChange(itemValue)}
-                            itemStyle={{color: "white"}}
-                            style={{backgroundColor: Platform.OS === "android" ? 'white' : '#1c272b'}}
-                        >
-
+                <View style={styles.fullOptionContainer}>
+                    <View style={styles.optionContainer}>
+                        <View style={styles.sortContainer}>
+                            <View style={{alignItems: 'center'}}><Text style={{color: 'white'}}>Sort</Text></View>
                             
-                            <Picker.Item label="Year New-Old" color={Platform.OS === "android" ? "black" : "white"} value="yearAsc"  style={{backgroundColor: 'red'}} />
-                            <Picker.Item label="Year Old-New" color={Platform.OS === "android" ? "black" : "white"} value="yearDesc"  style={{backgroundColor: 'red'}} />
-                            <Picker.Item label="Title A-Z" color={Platform.OS === "android" ? "black" : "white"} value="titleAsc" style={{backgroundColor: 'red'}} />
-                            <Picker.Item label="Title Z-A" color={Platform.OS === "android" ? "black" : "white"} value="titleDesc"  style={{backgroundColor: 'red'}} />
-                            
-                        </Picker>
-                    </View>
-                    <View style={styles.filterContainer}>
-                        <View style={{alignItems: 'center'}}><Text style={{color: 'white'}}>Filter</Text></View>
-                        <Picker
-                            selectedValue={filter}
-                            onValueChange={(itemValue, itemIndex) => handleFilterChange(itemValue)}
-                            itemStyle={{color: "white"}}
-                            style={{backgroundColor: Platform.OS === "android" ? 'white' : '#1c272b'}}
+                            <Picker
+                                selectedValue={selectedSort}
+                                onValueChange={(itemValue, itemIndex) => handleOptionChange(itemValue)}
+                                itemStyle={{color: "white"}}
+                                style={{backgroundColor: Platform.OS === "android" ? 'white' : '#1c272b'}}
+                            >
 
-                        >
-                            <Picker.Item label="No filter" value="" color={Platform.OS === "android" ? "black" : "white"} />
-                            <Picker.Item label="Action" value="action" color={Platform.OS === "android" ? "black" : "white"} />
-                            <Picker.Item label="Comedy" value="comedy" color={Platform.OS === "android" ? "black" : "white"} />
-                            <Picker.Item label="Drama" value="drama" color={Platform.OS === "android" ? "black" : "white"} />
-                            <Picker.Item label="Fantasy" value="fantasy" color={Platform.OS === "android" ? "black" : "white"} />
-                            <Picker.Item label="Thriller" value="thriller" color={Platform.OS === "android" ? "black" : "white"} />
-                        </Picker>
+                                
+                                <Picker.Item label="Year New-Old" color={Platform.OS === "android" ? "black" : "white"} value="yearAsc"  style={{backgroundColor: 'red'}} />
+                                <Picker.Item label="Year Old-New" color={Platform.OS === "android" ? "black" : "white"} value="yearDesc"  style={{backgroundColor: 'red'}} />
+                                <Picker.Item label="Title A-Z" color={Platform.OS === "android" ? "black" : "white"} value="titleAsc" style={{backgroundColor: 'red'}} />
+                                <Picker.Item label="Title Z-A" color={Platform.OS === "android" ? "black" : "white"} value="titleDesc"  style={{backgroundColor: 'red'}} />
+                                
+                            </Picker>
+                        </View>
+                        <View style={styles.filterContainer}>
+                            <View style={{alignItems: 'center'}}><Text style={{color: 'white'}}>Filter</Text></View>
+                            <Picker
+                                selectedValue={filter}
+                                onValueChange={(itemValue, itemIndex) => handleFilterChange(itemValue)}
+                                itemStyle={{color: "white"}}
+                                style={{backgroundColor: Platform.OS === "android" ? 'white' : '#1c272b'}}
+
+                            >
+                                <Picker.Item label="No filter" value="" color={Platform.OS === "android" ? "black" : "white"} />
+                                <Picker.Item label="Action" value="action" color={Platform.OS === "android" ? "black" : "white"} />
+                                <Picker.Item label="Comedy" value="comedy" color={Platform.OS === "android" ? "black" : "white"} />
+                                <Picker.Item label="Drama" value="drama" color={Platform.OS === "android" ? "black" : "white"} />
+                                <Picker.Item label="Fantasy" value="fantasy" color={Platform.OS === "android" ? "black" : "white"} />
+                                <Picker.Item label="Thriller" value="thriller" color={Platform.OS === "android" ? "black" : "white"} />
+                            </Picker>
+                        </View>
                     </View>
+                    {props.prevSearch ? <Button type="clear" title={" Previous search (" + props.prevSearch + ")"} onPress={() => props.handleOptionChanges(props.prevSearch, order, sort, filter)}
+                        icon={<Icon name="caret-left" size={30} color="#348FD5" />}/> : null }
+                
                 </View>
                 :
                 null
@@ -126,10 +131,11 @@ const styles = StyleSheet.create({
         flex: 3,
         flexDirection: 'row',
         alignContent: 'center',
-        backgroundColor: "#1c272b",
+    },
+    fullOptionContainer: {
+        backgroundColor: "#1c272b", 
         paddingTop: 15,
-        borderRadius: 5,
-
+        borderRadius: 5
     },
     sortContainer: {
         width: 175,

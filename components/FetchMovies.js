@@ -103,7 +103,6 @@ const FetchMovies = (props) => {
                     <View style={{alignItems: 'stretch', flex: 1}}>
                         <Text style={{color: 'white',  fontSize: 30, textAlign: 'center', marginBottom: 10, letterSpacing: 2}}>{title}</Text>
                         <Text style={{color: 'white', textAlign: 'center', marginBottom: 5}}><Text style={{fontWeight: "bold"}}>Genre: </Text>{genre}</Text>
-
                         <Text style={{color: 'white', textAlign: 'center', marginBottom: 5}}><Text style={{fontWeight: "bold"}}>Give Rating: </Text></Text>
                         <View
                         style={{paddingLeft: 40, paddingRight:40}}
@@ -114,7 +113,6 @@ const FetchMovies = (props) => {
                                 rating={rating}
                                 starSize={30}
                                 fullStarColor={'#ffd500'}
-                                //disabled={!canGiveRating}
                                 selectedStar={(rating) => onStarRatingPress(rating)}
                             /></View>
                         <Text>{'\n'}</Text>
