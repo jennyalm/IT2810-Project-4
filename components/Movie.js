@@ -13,7 +13,7 @@ const Movie = (props) => {
         <View style={styles.wrap}>
             <View style={styles.movieStyle} >
                 <TouchableHighlight
-                    onPress={() => props.onPress(props.title, props.plot, props.genre, props.poster, averageRating(props.allRatings))}
+                    onPress={() => props.onPress(props.title, props.plot, props.genre, props.poster, averageRating(props.allRatings), props.imdbID)}
                 >
                 <Image
                     style={styles.posterStyle}
@@ -37,10 +37,10 @@ const Movie = (props) => {
                     emptyStarColor={'grey'}
                     fullStarColor={'#ffd500'}
                     disabled={true}
-                    starSize={40}
+                    starSize={30}
                 />
             </View>
-            <Text style={{color: 'white', textAlign: 'center'}}>Average rating: {averageRating(props.allRatings)}</Text>
+            <Text style={{color: 'grey', textAlign: 'center'}}>Average rating: {averageRating(props.allRatings)}</Text>
             <Text>{'\n\n\n'}</Text>
 
         </View>

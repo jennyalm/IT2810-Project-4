@@ -36,6 +36,8 @@ const FetchMovies = (props) => {
         axios.put("http://it2810-13.idi.ntnu.no:4000/movies/" + imdbID, content)
         console.log("http://it2810-13.idi.ntnu.no:4000/movies/" + imdbID)
 
+        console.log("settes inn i db" + content)
+
     }
 
     // updates DB after modal is closed
