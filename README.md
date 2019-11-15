@@ -67,7 +67,7 @@ Ved en senere oppdatering av appen, kunne vi ha fikset menyen i android til å s
 
 Søk og resultat:                    Options meny med mulighet for å se forrige søk:
 
-<img src="assets/IMG_1708.PNG" width="250" /> <img src="assets/IMG_1711.PNG" width="250" /> <img src="assets/IMG_1710.PNG" width="250" /> <img src="assets/IMG_1709.PNG" width="250" />
+<div><p>Søk og resultat</p><img src="assets/IMG_1708.PNG" width="250" /></div> <img src="assets/IMG_1711.PNG" width="250" /> <img src="assets/IMG_1710.PNG" width="250" /> <img src="assets/IMG_1709.PNG" width="250" />
 
 
 Options meny med mulighet for å se forrige søk:
