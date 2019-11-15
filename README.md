@@ -61,16 +61,13 @@ Søk, filtrering og sortering er testet gjennom å sammenligne resultat i appen,
 I tillegg er det sjekket at gitt rating blir lagt til i db, og at average rating blir oppdatert.
 Styling har vi testet på flere mobiler.
 Skjermstørrelsen på mobilen vil påvirke popup’en til filmene i noe grad(mindre mobilskjermer må bla i popup’en).
-På android ser meny for options annerledes ut enn på ios.
+På Android ser meny for options annerledes ut enn på ios.
 Dette kommer av at komponenten (Picker) har forskjellig utseende på de to plattformene.
-Ved en senere oppdatering av appen, kunne vi ha fikset menyen i android til å se ut som den på iOS. 
+Ved en senere oppdatering av appen, kunne vi ha fikset menyen i Android til å se ut som den på iOS. 
 
-<div float="left">
-    <div><p>Søk og resultat:</p><img src="assets/IMG_1708.PNG" alt="Søk og resultat" width="200"/></div>
-    <div><p>Options-meny m/forrige søk:</p><img src="assets/IMG_1711.PNG" width="200"/></div>
-    <div><p>Sidevalg og -visning:</p><img src="assets/IMG_1710.PNG" width="200"/></div>
-    <div><p>Popup m/ratingmulighet:</p><img src="assets/IMG_1709.PNG" width="200"/></div>
-</div>
+
+| <div><p>Søk og resultat:</p><img src="assets/IMG_1708.PNG" width="200" /></div> | <div><p>Options-meny m/forrige søk:</p><img src="assets/IMG_1711.PNG" width="200" /></div> | <div><p>Sidevalg og -visning:</p><img src="assets/IMG_1710.PNG" width="200" /></div> | <div><p>Popup m/ratingmulighet:</p><img src="assets/IMG_1709.PNG" width="200" /></div> |
+
 
 ---
 
