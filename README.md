@@ -67,7 +67,7 @@ Ved en senere oppdatering av appen, kunne vi ha fikset menyen i android til å s
 
 Søk og resultat:
 
-![alt: text]( assets/IMG_1708.PNG =120x)
+![alt: text]( assets/IMG_1708.PNG =10x)
 
 Options meny med mulighet for å se forrige søk:
 
