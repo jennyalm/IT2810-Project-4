@@ -56,7 +56,7 @@ sitt view kalt *Overlay* bruker vi for å lage pop-upen som viser mer detaljert 
 
 #### Testing
 
-Appen er testet manuelt på både android og iOS. Alle funksjoner har blitt testet.
+Appen er testet manuelt på både Android og iOS ved hjelp av Expo klienten på hver av platformene. Alle funksjoner har blitt testet.
 Søk, filtrering og sortering er testet gjennom å sammenligne resultat i appen, med resultat i db.
 I tillegg er det sjekket at gitt rating blir lagt til i db, og at average rating blir oppdatert.
 Styling har vi testet på flere mobiler.
@@ -67,7 +67,7 @@ Ved en senere oppdatering av appen, kunne vi ha fikset menyen i android til å s
 
 Søk og resultat:
 
-![alt: text]( assets/IMG_1708.PNG)
+![alt: text]( assets/IMG_1708.PNG =120x)
 
 Options meny med mulighet for å se forrige søk:
 
