@@ -67,11 +67,13 @@ Ved en senere oppdatering av appen, kunne vi ha fikset menyen i android til å s
 
 Søk og resultat:
 
-![alt: text]( assets/IMG_1708.PNG =10x)
+<img src="assets/IMG_1708.PNG" width="200" />
+
+![alt: text]( assets/IMG_1708.PNG)
 
 Options meny med mulighet for å se forrige søk:
 
-![alt: text]( assets/IMG_1711.PNG)
+![alt: text]( assets/IMG_1711.PNG) 
 
 Side- valg og visning:
 
