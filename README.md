@@ -14,7 +14,7 @@ persistent lagring på brukerens enhet av det forrige søket brukeren foretok se
 * Dynamisk lasting av data med sidehåndtering.
 * Detaljert visning i form av en pop-up (modal) når man trykker på en poster.
 * Mulighet for å gi stjernerangering av filmene (lagres i databasen).
-* Knapp for å utføre forrige søk gjort på enheten (knappen vil bare vises hvis det faktisk foreligger et tidligere søk)
+* Knapp under "Options" for å utføre forrige søk gjort på enheten (knappen vises bare hvis det foreligger et tidligere søk)
 
 ## Teknologi
 
@@ -56,7 +56,7 @@ sitt view kalt *Overlay* bruker vi for å lage pop-upen som viser mer detaljert 
 
 #### Testing
 
-Appen er testet manuelt på både Android og iOS ved hjelp av Expo klienten på hver av platformene. Alle funksjoner har blitt testet.
+Appen er testet manuelt på både Android og iOS ved hjelp av Expo-klienten på hver av platformene. Alle funksjoner har blitt testet.
 Søk, filtrering og sortering er testet gjennom å sammenligne resultat i appen, med resultat i db.
 I tillegg er det sjekket at gitt rating blir lagt til i db, og at average rating blir oppdatert.
 Styling har vi testet på flere mobiler.
