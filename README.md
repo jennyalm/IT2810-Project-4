@@ -69,6 +69,8 @@ Ved en senere oppdatering av appen, kunne vi ha fikset menyen i Android til å s
 | <div><p>Søk og resultat:</p><img src="assets/IMG_1708.PNG" width="200" /></div> | <div><p>Options-meny m/forrige søk:</p><img src="assets/IMG_1711.PNG" width="200" /></div> | <div><p>Sidevalg og -visning:</p><img src="assets/IMG_1710.PNG" width="200" /></div> | <div><p>Popup m/ratingmulighet:</p><img src="assets/IMG_1709.PNG" width="200" /></div> |
 
 
+| header | header |
+
 ---
 
 ### Fremgangsmåte for testing av prosjekt
