@@ -65,9 +65,9 @@ På android ser meny for options annerledes ut enn på ios.
 Dette kommer av at komponenten (Picker) har forskjellig utseende på de to plattformene.
 Ved en senere oppdatering av appen, kunne vi ha fikset menyen i android til å se ut som den på iOS. 
 
-Søk og resultat:
+Søk og resultat:                    Options meny med mulighet for å se forrige søk:
 
-<img src="assets/IMG_1708.PNG" width="200" /> <img src="assets/IMG_1711.PNG" width="200" /> <img src="assets/IMG_1710.PNG" width="200" />
+<img src="assets/IMG_1708.PNG" width="250" /> <img src="assets/IMG_1711.PNG" width="250" /> <img src="assets/IMG_1710.PNG" width="250" /> <img src="assets/IMG_1709.PNG" width="250" />
 
 
 Options meny med mulighet for å se forrige søk:
