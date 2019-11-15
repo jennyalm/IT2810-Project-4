@@ -65,11 +65,11 @@ På Android ser meny for options annerledes ut enn på ios.
 Dette kommer av at komponenten (Picker) har forskjellig utseende på de to plattformene.
 Ved en senere oppdatering av appen, kunne vi ha fikset menyen i Android til å se ut som den på iOS. 
 
+| Søk og resultat | Options-meny m/forrige søk | Sidevalg og -visning | Popup m/ratingmulighet |
+| ------ | ------ | ------ | ------ |
+| <img src="assets/IMG_1708.PNG" width="200" /> | <img src="assets/IMG_1711.PNG" width="200" /> | <img src="assets/IMG_1710.PNG" width="200" /> | <img src="assets/IMG_1709.PNG" width="200" /> |
 
-| <div><p>Søk og resultat:</p><img src="assets/IMG_1708.PNG" width="200" /></div> | <div><p>Options-meny m/forrige søk:</p><img src="assets/IMG_1711.PNG" width="200" /></div> | <div><p>Sidevalg og -visning:</p><img src="assets/IMG_1710.PNG" width="200" /></div> | <div><p>Popup m/ratingmulighet:</p><img src="assets/IMG_1709.PNG" width="200" /></div> |
 
-
-| header | header |
 
 ---
 
